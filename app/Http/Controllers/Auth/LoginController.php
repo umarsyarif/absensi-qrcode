@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -38,8 +39,24 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function username()
+    public function login(Request $request)
     {
-        return 'username';
+        $this->validate($request, [
+            'identity' => 'required|string',
+            'password' => 'required|string|min:6',
+        ]);
+
+        $login = [
+            'identity' => $request->identity,
+            'password' => $request->password
+        ];
+
+        //LAKUKAN LOGIN
+        if (auth()->attempt($login)) {
+            //JIKA BERHASIL, MAKA REDIRECT KE HALAMAN HOME
+            return redirect()->route('home');
+        }
+        //JIKA SALAH, MAKA KEMBALI KE LOGIN DAN TAMPILKAN NOTIFIKASI
+        return redirect()->route('login')->with(['error' => 'ID/Password salah!']);
     }
 }
