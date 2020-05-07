@@ -27,16 +27,16 @@ class HomeController extends Controller
         $role = Auth::user()->role;
         switch ($role->name) {
             case 'kepsek':
-                return view('siswa.dashboard');
+                return view('kepsek.dashboard');
                 break;
             case 'kurikulum':
-                return view('siswa.dashboard');
+                return view('kurikulum.dashboard');
                 break;
             case 'tu':
-                return view('siswa.dashboard');
+                return view('tu.dashboard');
                 break;
             case 'guru':
-                return view('siswa.dashboard');
+                return view('guru.dashboard');
                 break;
             case 'siswa':
                 return view('siswa.dashboard');
