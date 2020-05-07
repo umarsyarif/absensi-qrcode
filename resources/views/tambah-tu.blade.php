@@ -11,12 +11,16 @@
         @csrf
     <label>Name :</label>
     <input type="text" name="name">
+    
     <label>Identity :</label>
     <input type="text" name="identity">
+    
     <label>pass :</label>
     <input type="password" name="password">
+    
     <label>pas consf :</label>
     <input type="password" name="confirmation">
+    
     <button type="submit">Simpan</button>
 </form>
 </body>
