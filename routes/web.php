@@ -18,3 +18,8 @@ Route::get('/', function () {
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/data-tu', 'KepsekController@index')->name('tu');
+Route::get('/tambah-tu', 'KepsekController@Create')->name('tambah.tu');
+Route::post('/tambah-tu', 'KepsekController@store');
+
