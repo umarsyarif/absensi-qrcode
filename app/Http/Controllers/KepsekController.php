@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Kepsek;
+use App\User;
 use Illuminate\Support\Facades\Redirect;
+use App\TU;
 // use Illuminate\Support\Facades\Request;
 
 class KepsekController extends Controller
@@ -14,10 +16,22 @@ class KepsekController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
-        $data_tu = Kepsek::where('role_id',3)->get();
-        return view('datatu',compact('data_tu'));
+        return view('kepsek.dashboard');
+    }
+
+    public function DataTu()
+    {
+        // $data_tu = Kepsek::where('role_id',3)->get();
+        $tu = TU::all();
+        return view('kepsek.tu',compact('tu'));
     }
 
     /**

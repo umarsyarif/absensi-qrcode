@@ -1,8 +1,6 @@
-<footer class="main-footer">
+<footer class="main-footer text-center">
     <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-        Anything you want
-    </div>
+
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong class="text-center">Copyright &copy; 2020 <a href="https://adminlte.io">SMK 2 Muhammadiyah</a>.</strong> 
 </footer>
