@@ -52,7 +52,6 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'identity' => ['required', 'string', 'max:255', 'unique:users'], //TAMBAHKAN VALIDASI IDENTITAS
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -68,7 +67,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'identity' => $data['identity'], //SIMPAN INFORMASI IDENTITAS KE DATABASE
-            'email' => $data['email'],
+            'role_id' => $data['role_id'] ?? 5,
             'password' => Hash::make($data['password']),
         ]);
     }

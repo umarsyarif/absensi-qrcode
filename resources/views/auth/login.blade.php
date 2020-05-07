@@ -16,7 +16,7 @@
                         @endif
 
                         <div class="form-group row">
-                            <label for="identity" class="col-md-4 col-form-label text-md-right">{{ __('ID') }}</label>
+                            <label for="identity" class="col-md-4 col-form-label text-md-right">{{ __('User ID') }}</label>
 
                             <div class="col-md-6">
                                 <input id="identity" type="text" class="form-control @error('identity') is-invalid @enderror" name="identity" value="{{ old('identity') }}" required autocomplete="identity" autofocus>
