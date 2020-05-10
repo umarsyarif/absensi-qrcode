@@ -42,18 +42,13 @@ class User extends Authenticatable
         return $this->belongsTo('App\Role');
     }
 
-    public function tu()
+    public function guru()
     {
-        return $this->hasOne('App\TU');
-    }
-
-    public function kurikulum()
-    {
-        return $this->hasOne('App\Kurikulum');
+        return $this->hasOne('App\Guru');
     }
 
     public function siswa()
     {
-        return $this->belongsTo('App\Siswa');
+        return $this->hasOne('App\Siswa');
     }
 }

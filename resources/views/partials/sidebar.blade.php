@@ -15,11 +15,21 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="" class="nav-link {{$title == 'Dashboard' ? 'active' : ''}}">
+            <a href="{{route('dashboard')}}" class="nav-link {{$title == 'Dashboard' ? 'active' : ''}}">
               <i class="nav-icon fas fa-home"></i>
               <p>Dashboard</p>
             </a>
           </li>
+           {{-- Menu Admin --}}
+          @if (Auth::user()->role->name == 'admin')
+            <li class="nav-item">
+                <a href="{{route('data-guru.show')}}" class="nav-link {{$title == 'Data Guru' ? 'active' : ''}}">
+                <i class="nav-icon fas fa-chart-line"></i>
+                <p>Data Guru</p>
+                </a>
+            </li>
+          @endif
+
           <li class="nav-item">
             <a href="" class="nav-link {{$title == 'Data Latih' ? 'active' : ''}}">
               <i class="nav-icon fas fa-chart-line"></i>

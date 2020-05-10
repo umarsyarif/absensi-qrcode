@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -54,7 +54,7 @@ class LoginController extends Controller
         //LAKUKAN LOGIN
         if (auth()->attempt($login)) {
             //JIKA BERHASIL, MAKA REDIRECT KE HALAMAN HOME
-            return redirect()->route('home');
+            return redirect()->route('dashboard');
         }
         //JIKA SALAH, MAKA KEMBALI KE LOGIN DAN TAMPILKAN NOTIFIKASI
         return redirect()->route('login')->with(['error' => 'ID/Password salah!']);

@@ -13,31 +13,22 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 Auth::routes(['register' => false]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+// ADMIN ROUTES
+Route::prefix('data-guru')->name('data-guru.')->group(function () {
+    Route::post('/', 'AdminController@storeGuru')->name('store');
+    Route::get('/', 'AdminController@showGuru')->name('show');
+});
 
-// route kepsek
-Route::get('/dashboard', 'KepsekController@index')->name('kepsek.dashboard');
+// Route::get('/data-tu', 'KepsekController@ShowTu')->name('kepsek.tu');
+// Route::get('/data-tu/create-data-tu', 'KepsekController@CreateTu')->name('kepsek.tu.create');
+// Route::post('/data-tu/create-data-tu', 'KepsekController@storeTu');
 
-Route::get('/data-tu', 'KepsekController@ShowTu')->name('kepsek.tu');
-Route::get('/data-tu/create-data-tu', 'KepsekController@CreateTu')->name('kepsek.tu.create');
-Route::post('/data-tu/create-data-tu', 'KepsekController@storeTu');
-
-Route::get('/data-kurikulum', 'KepsekController@ShowKurikulum')->name('kepsek.kurikulum');
-Route::get('/data-kurikulum/create-data-kurikulum', 'KepsekController@CreateKurikulum')->name('kepsek.kurikulum.create');
-Route::post('/data-kurikulum/create-data-kurikulum', 'KepsekController@StoreKurikulum');
-
-// route tu
-Route::get('/dashboard', 'TuController@index')->name('tu.dashboard');
-
-// route kurikulum
-Route::get('/dashboard', 'kurikulumController@index')->name('kurikulum.dashboard');
-
-// route guru
-Route::get('/dashboard', 'GuruController@index')->name('guru.dashboard');
-
-// route siswa
-Route::get('/dashboard', 'SiswaController@index')->name('siswa.dashboard');
+// Route::get('/data-kurikulum', 'KepsekController@ShowKurikulum')->name('kepsek.kurikulum');
+// Route::get('/data-kurikulum/create-data-kurikulum', 'KepsekController@CreateKurikulum')->name('kepsek.kurikulum.create');
+// Route::post('/data-kurikulum/create-data-kurikulum', 'KepsekController@StoreKurikulum');

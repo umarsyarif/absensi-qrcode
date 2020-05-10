@@ -24,23 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $role = Auth::user()->role;
-        switch ($role->name) {
-            case 'kepsek':
-                return view('kepsek.dashboard');
-                break;
-            case 'kurikulum':
-                return view('kurikulum.dashboard');
-                break;
-            case 'tu':
-                return view('tu.dashboard');
-                break;
-            case 'guru':
-                return view('guru.dashboard');
-                break;
-            case 'siswa':
-                return view('siswa.dashboard');
-                break;
+        $role = Auth::user()->role->name;
+        if (view()->exists("{$role}.dashboard")) {
+            return view("{$role}.dashboard");
         }
+
+        return abort(404);
     }
 }
