@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Guru;
 use App\User;
+use App\Siswa;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -69,47 +70,24 @@ class AdminController extends Controller
         return redirect()->route('data-guru.show')->withSuccess('Data berhasil dihapus!');
     }
 
-    public function ShowKurikulum()
+    public function showSiswa()
     {
-        $kurikulum = Kurikulum::all();
-        return view('kepsek.kurikulum', compact('kurikulum'));
+        $siswa = Siswa::all();
+        return view('admin.data-siswa', compact('siswa'));
     }
 
-    public function CreateKurikulum()
+    public function createSiswa()
     {
-        return view('kepsek.tambah-kurikulum');
+        //
     }
 
-    public function StoreKurikulum(Request $request)
+    public function storeSiswa(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|min:4',
-            'identity' => 'required|numeric|min:10',
-            'password' => 'required|string|min:6',
-            'confirmation' => 'required|same:password',
+        //
+    }
 
-            'nama'          => 'required',
-            'jenis_kelamin' => 'required',
-            'alamat'          => 'required',
-            'no_hp'          => 'required|numeric',
-            'nip'          => 'required|numeric|min:10',
-        ]);
-
-        $data = new User;
-        $data->name = $request->name;
-        $data->identity = $request->identity;
-        $data->password = bcrypt($request->password);
-        $data->role_id = 2;
-        $data->save();
-
-        $data->kurikulum()->create([
-            'nip'          => $request->nip,
-            'nama'          => $request->nama,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat'          => $request->alamat,
-            'no_hp'          => $request->no_hp,
-        ]);
-
-        return Redirect(route('kepsek.kurikulum'));
+    public function destroySiswa($id)
+    {
+        //
     }
 }
