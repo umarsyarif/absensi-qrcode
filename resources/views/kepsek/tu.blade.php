@@ -27,6 +27,7 @@ $title = 'Data TU';
                   <button type="button" style="float: right" class="btn btn-success" data-toggle="modal" data-target="#modal-lg">
                        + Tambah Data
                       </button>
+                      <a href="{{ route('kepsek.tu.create') }}">Tambah</a>
                 </div>
                         
                 <!-- /.card-header -->
@@ -71,22 +72,52 @@ $title = 'Data TU';
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
+                    <form action="{{ route('kepsek.tu') }}" method="POST">
+                        @csrf
                     <div class="modal-body">
-                      <form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-</form>
+                          <div class="row">
+                              <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Jabatan</label>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Enter Jabatan">
+                                        <span class="invalid-feedback">Name Wajib Di isi</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Identity</label>
+                                        <input type="text" class="form-control" name="identity" placeholder="Enter identity">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>NIP</label>
+                                        <input type="text" class="form-control" name="nip" placeholder="Enter NIP">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Nama</label>
+                                        <input type="text" class="form-control" name="nama" placeholder="Enter Nama">
+                                    </div>
+                              </div>
+                              <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Alamat</label>
+                                        <input type="text" class="form-control" name="alamat" placeholder="Enter Alamat">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>No Hp</label>
+                                        <input type="text" class="form-control" name="no_hp" placeholder="Enter No Hp">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword">Password</label>
+                                        <input type="password" class="form-control" name="password" placeholder="Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Confirmation Password</label>
+                                        <input type="password" class="form-control" name="confirmation" placeholder="ConfirmationPassword">
+                                    </div>
+                              </div>
+                          </div>          
                     </div>
                     <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
+                      <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
                   </div>
                   <!-- /.modal-content -->
@@ -94,4 +125,5 @@ $title = 'Data TU';
                 <!-- /.modal-dialog -->
               </div>
               <!-- /.modal -->
+            </form>
 @endsection

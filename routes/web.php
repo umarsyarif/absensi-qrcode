@@ -21,7 +21,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // route kepsek
 Route::get('/dashboard', 'KepsekController@index')->name('kepsek.dashboard');
-Route::get('/data-tu', 'KepsekController@DataTu')->name('kepsek.tu');
+
+Route::get('/data-tu', 'KepsekController@ShowTu')->name('kepsek.tu');
+Route::get('/data-tu/create-data-tu', 'KepsekController@CreateTu')->name('kepsek.tu.create');
+Route::post('/data-tu/create-data-tu', 'KepsekController@storeTu');
+
+Route::get('/data-kurikulum', 'KepsekController@ShowKurikulum')->name('kepsek.kurikulum');
+Route::get('/data-kurikulum/create-data-kurikulum', 'KepsekController@CreateKurikulum')->name('kepsek.kurikulum.create');
+Route::post('/data-kurikulum/create-data-kurikulum', 'KepsekController@StoreKurikulum');
 
 // route tu
 Route::get('/dashboard', 'TuController@index')->name('tu.dashboard');

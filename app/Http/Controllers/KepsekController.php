@@ -7,15 +7,12 @@ use App\Kepsek;
 use App\User;
 use Illuminate\Support\Facades\Redirect;
 use App\TU;
+use App\Kurikulum;
 // use Illuminate\Support\Facades\Request;
 
 class KepsekController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -27,46 +24,55 @@ class KepsekController extends Controller
         return view('kepsek.dashboard');
     }
 
-    public function DataTu()
+    public function ShowTu()
     {
         // $data_tu = Kepsek::where('role_id',3)->get();
         $tu = TU::all();
         return view('kepsek.tu',compact('tu'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function CreateTu()
     {
-        return view('tambah-tu');
+        return view('kepsek.tambah-tu');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function StoreTu(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|min:4',
-            'identity' => 'required|numeric',
-            'password' => 'required',
+            'identity' => 'required|numeric|min:10',
+            'password' => 'required|string|min:6',
             'confirmation' => 'required|same:password',
+
+            'nama'          => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat'          => 'required',
+            'no_hp'          => 'required|numeric',
+            'nip'          => 'required|numeric|min:10',
         ]);
 
-
-        $data = new Kepsek;
+        $data = new User;
         $data->name = $request->name;
         $data->identity = $request->identity;
         $data->password = bcrypt($request->password) ;
         $data->role_id = 3;
         $data->save();
-        return Redirect (route('tu'));
+
+        $data->tu()->create([
+            'nip'          => $request -> nip,
+            'nama'          => $request -> nama,
+            'jenis_kelamin' => $request -> jenis_kelamin,
+            'alamat'          => $request -> alamat,
+            'no_hp'          => $request -> no_hp,      
+        ]);
+
+        // $data = User::create($user);
+        // $data->nip = $request->nip;
+        // $data->name = $request->nama;
+        // $data->alamat = $request->alamat;
+        // $data->no_hp = $request->no_hp;
+        // $data->tu()->save();
+        return Redirect (route('kepsek.tu'));
 
     }
 
@@ -76,18 +82,13 @@ class KepsekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function EditTu($id)
     {
         //
     }
@@ -99,7 +100,7 @@ class KepsekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function UpdateTu(Request $request, $id)
     {
         //
     }
@@ -110,8 +111,53 @@ class KepsekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function DestroyTu($id)
     {
         //
+    }
+
+    public function ShowKurikulum()
+    {
+        $kurikulum = Kurikulum::all();
+        return view('kepsek.kurikulum',compact('kurikulum'));
+    }
+
+    public function CreateKurikulum()
+    {
+        return view('kepsek.tambah-kurikulum');
+    }    
+
+    public function StoreKurikulum(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|min:4',
+            'identity' => 'required|numeric|min:10',
+            'password' => 'required|string|min:6',
+            'confirmation' => 'required|same:password',
+
+            'nama'          => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat'          => 'required',
+            'no_hp'          => 'required|numeric',
+            'nip'          => 'required|numeric|min:10',
+        ]);
+
+        $data = new User;
+        $data->name = $request->name;
+        $data->identity = $request->identity;
+        $data->password = bcrypt($request->password) ;
+        $data->role_id = 2;
+        $data->save();
+
+        $data->kurikulum()->create([
+            'nip'          => $request -> nip,
+            'nama'          => $request -> nama,
+            'jenis_kelamin' => $request -> jenis_kelamin,
+            'alamat'          => $request -> alamat,
+            'no_hp'          => $request -> no_hp,      
+        ]);
+
+        return Redirect (route('kepsek.kurikulum'));
+
     }
 }
