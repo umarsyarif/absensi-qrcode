@@ -79,6 +79,15 @@ $title = 'Data Guru';
             <form action="{{ route('data-guru.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
@@ -126,3 +135,10 @@ $title = 'Data Guru';
     </div> <!-- /.modal-dialog -->
 </div> <!-- /.modal -->
 @endsection
+@push('scripts')
+<script type="text/javascript">
+    @if ($errors->any())
+        $('#modal-lg').modal('show');
+    @endif
+</script>
+@endpush
