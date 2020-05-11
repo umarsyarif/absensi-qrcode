@@ -83,7 +83,31 @@ class AdminController extends Controller
 
     public function storeSiswa(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name'          => 'required',
+            'identity'      => 'required|numeric|unique:users',
+            'password'      => 'required|string',
+            'confirmation'  => 'required|same:password',
+            'jenis_kelamin' => 'required',
+            'alamat'        => 'required',
+            'no_hp'         => 'required|numeric',
+        ]);
+
+        $data = new User;
+        $data->name = $request->name;
+        $data->identity = $request->identity;
+        $data->password = bcrypt($request->password);
+        $data->role_id = 3;
+        $data->save();
+
+        $data->siswa()->create([
+            'user_id'       => $data->id,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat'        => $request->alamat,
+            'no_hp'         => $request->no_hp,
+        ]);
+
+        return redirect()->route('data-siswa.show')->withSuccess('Data berhasil disimpan!');
     }
 
     public function destroySiswa($id)

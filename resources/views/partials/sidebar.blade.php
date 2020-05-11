@@ -30,6 +30,15 @@
             </li>
           @endif
 
+          @if (Auth::user()->role->name == 'admin')
+            <li class="nav-item">
+                <a href="{{route('data-siswa.show')}}" class="nav-link {{$title == 'Data Siswa' ? 'active' : ''}}">
+                <i class="nav-icon fas fa-chart-line"></i>
+                <p>Data Siswa</p>
+                </a>
+            </li>
+          @endif
+
           <li class="nav-item">
             <a href="" class="nav-link {{$title == 'Data Latih' ? 'active' : ''}}">
               <i class="nav-icon fas fa-chart-line"></i>

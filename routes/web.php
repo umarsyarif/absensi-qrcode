@@ -25,6 +25,11 @@ Route::prefix('data-guru')->name('data-guru.')->group(function () {
     Route::get('/', 'AdminController@showGuru')->name('show');
 });
 
+Route::prefix('data-siswa')->name('data-siswa.')->group(function () {
+    Route::post('/', 'AdminController@storeSiswa')->name('store');
+    Route::get('/', 'AdminController@showSiswa')->name('show');
+});
+
 // Route::get('/data-tu', 'KepsekController@ShowTu')->name('kepsek.tu');
 // Route::get('/data-tu/create-data-tu', 'KepsekController@CreateTu')->name('kepsek.tu.create');
 // Route::post('/data-tu/create-data-tu', 'KepsekController@storeTu');
