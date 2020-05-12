@@ -39,18 +39,14 @@
             </li>
           @endif
 
+          @if (Auth::user()->role->name == 'guru')
           <li class="nav-item">
-            <a href="" class="nav-link {{$title == 'Data Latih' ? 'active' : ''}}">
+              <a href="{{route('absensi-siswa.show')}}" class="nav-link {{$title == 'Absensi Siswa' ? 'active' : ''}}">
               <i class="nav-icon fas fa-chart-line"></i>
-              <p>Data Latih</p>
-            </a>
+              <p>Absensi</p>
+              </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-area"></i>
-              <p>Data Uji</p>
-            </a>
-          </li>
+        @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

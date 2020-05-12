@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Guru;
 use App\User;
 use App\Siswa;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Jadwal;
 
 class AdminController extends Controller
 {
@@ -113,5 +115,28 @@ class AdminController extends Controller
     public function destroySiswa($id)
     {
         //
+    }
+
+    public function showAbsensi(){
+        // $guru = Guru::findOrFail(Auth::user()->guru->id);
+        // $kelas = $guru->kelas;
+        
+        //$id_kelas = $jadwal->kelas->id;
+        //$siswa = Siswa::where('id_kelas', $id_kelas)->get();
+
+
+        // $jadwal = new Jadwal;
+        // $id = $jadwal->id;
+        // $data ->jadwal->kelas->id;
+        // $siswa = Siswa::where('id_kelas', $data)->get();
+        //  $id -> user->guru->id;
+        $id = Auth::user()->guru->id; 
+        $jadwal = Jadwal::all();
+        //dd($jadwal);
+        return view('guru.absensi-siswa', compact('jadwal'));
+    }
+
+    public function storeAbsensi(){
+    
     }
 }

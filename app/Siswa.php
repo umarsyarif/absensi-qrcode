@@ -7,10 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class Siswa extends Model
 {
     protected $table = 'siswa';
-    protected $fillable = ['id'];
+    //protected $guarded = ['id'];
+    protected $fillable = ['id', 'nama'];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function jadwal()
+    {
+        return $this->belongsToMany('App\Jadwal','absensi','siswa_id', 'jadwal_id' );
+    }
+
+    public function kelas()
+    {
+        return $this->belongsTo('App\Kelas');
     }
 }

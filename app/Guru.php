@@ -13,4 +13,10 @@ class Guru extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function kelas()
+    {
+        return $this->belongsToMany('App\Kelas', 'jadwal', 'guru_id', 'kelas_id');
+    }
+
 }

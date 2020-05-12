@@ -40,12 +40,13 @@ $title = 'Data Siswa';
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>NIP</th>
+                                <th>No</th>
+                                <th>NISN</th>
                                 <th>Nama</th>
                                 <th>Jenis Kelamin</th>
                                 <th>Alamat</th>
                                 <th>No Hp</th>
+                                <th>Kelas</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,6 +58,7 @@ $title = 'Data Siswa';
                                 <td>{{ $row -> jenis_kelamin }}</td>
                                 <td>{{ $row -> alamat }}</td>
                                 <td>{{ $row -> no_hp }}</td>
+                                <td>{{ $row -> kelas -> nama }}</td>
                             </tr>
                             @endforeach
                         </tbody>
