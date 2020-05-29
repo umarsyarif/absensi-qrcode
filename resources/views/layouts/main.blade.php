@@ -10,7 +10,14 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
+  @yield('header')
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
+  @yield('header-qr') 
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+ 
+  
+  
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -28,7 +35,19 @@
     @include('partials.footer')
 
     </div>
+    
     <script src="{{asset('js/app.js')}}"></script>
+    <script src="js/bootstrap-editable.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @yield('footer-qr')
+    <script>
+      @if(Session::has('sukses'))
+        // tampilkan toast sukses
+        toastr.success("{{Session::get('sukses')}}","Selamat")
+      @endif
+    
+    </script>
     @stack('scripts')
 </body>
 </html>

@@ -8,7 +8,8 @@ class Siswa extends Model
 {
     protected $table = 'siswa';
     //protected $guarded = ['id'];
-    protected $fillable = ['id', 'nama'];
+    protected $fillable = ['user_id', 'kelas_id', 'jenis_kelamin', 'alamat', 
+                            'no_hp', 'nama_ibu', 'no_hp_ibu', 'nama_ayah', 'no_hp_ayah'];
 
     public function user()
     {
@@ -23,5 +24,10 @@ class Siswa extends Model
     public function kelas()
     {
         return $this->belongsTo('App\Kelas');
+    }
+
+    public function absensi()
+    {
+        return $this->hasMany('App\Absensi');
     }
 }

@@ -1,77 +1,67 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+{{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url('/') }}">
+            Absensi QR - Code
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                        @if (session('error'))
-                        <div class="alert alert-danger">{{ session('error') }}</div>
-                        @endif
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav mr-auto">
 
-                        <div class="form-group row">
-                            <label for="identity" class="col-md-4 col-form-label text-md-right">{{ __('User ID') }}</label>
+            </ul>
 
-                            <div class="col-md-6">
-                                <input id="identity" type="text" class="form-control @error('identity') is-invalid @enderror" name="identity" value="{{ old('identity') }}" required autocomplete="identity" autofocus>
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Authentication Links -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Panduan') }}</a>
+                    </li>
+                    
+            </ul>
+        </div>
+    </div>
+</nav> --}}
 
-                                @error('identity')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+<div class="limiter" style="">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form">              
+                <span class="login100-form-title p-b-43">
+                        {{-- <img  class="navbar-brand" src="images/86181582_2246228212145737_5765633088210075648_o.jpg" style="width: 70%"><br> --}}
+                    {{-- Login to continue --}}
+                    Assalamualaikum, Silahkan Login
+                </span>
+                
+                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                    <input class="input100" type="text" name="email">
+                    <span class="focus-input100"></span>
+                    <span class="label-input100">Identity</span>
                 </div>
+                
+                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                    <input class="input100" type="password" name="pass">
+                    <span class="focus-input100"></span>
+                    <span class="label-input100">Password</span>
+                </div>      
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn">
+                        Login
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="login100-more" style="background-image: url('images/36268100_1336237513144816_2704337195992350720_n.jpg');">
             </div>
         </div>
     </div>
 </div>
-@endsection

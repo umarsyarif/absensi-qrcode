@@ -41,6 +41,7 @@ $title = 'Data Siswa';
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>QR Code</th>
                                 <th>NISN</th>
                                 <th>Nama</th>
                                 <th>Jenis Kelamin</th>
@@ -53,6 +54,7 @@ $title = 'Data Siswa';
                             @foreach ($siswa as $row)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{!! QrCode::size(80)->generate($row -> user -> identity); !!}</td>
                                 <td>{{ $row -> user -> identity }}</td>
                                 <td>{{ $row -> user -> name }}</td>
                                 <td>{{ $row -> jenis_kelamin }}</td>
@@ -81,33 +83,72 @@ $title = 'Data Siswa';
             <form action="{{ route('data-siswa.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
+                        @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" class="form-control" name="name" placeholder="Nama Lengkap">
+                                <input type="text" class="form-control" name="name" placeholder="Nama Lengkap" value="{{ old('name')}}">
                             </div>
                             <div class="form-group">
                                 <label>Jenis Kelamin</label>
-                                <select class="form-control" name="jenis_kelamin">
+                                <select class="form-control" name="jenis_kelamin" value="{{ old('jenis_kelamin')}}">
                                     <option value="Laki-Laki">Laki-Laki</option>
                                     <option value="Perempuan">Perempuan</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Alamat</label>
-                                <input type="text" class="form-control" name="alamat" placeholder="Alamat Lengkap">
+                                <input type="text" class="form-control" name="alamat" placeholder="Alamat Lengkap" value="{{ old('alamat')}}">
                             </div>
                             <div class="form-group">
                                 <label>No Hp</label>
-                                <input type="text" class="form-control" name="no_hp" placeholder="No.Hp/Whatsapp">
+                                <input type="text" class="form-control" name="no_hp" placeholder="No.Hp/Whatsapp" value="{{ old('no_hp')}}">
+                            </div>
+                            <div class="form-group">
+                                    <label>NISN</label>
+                                    <input type="text" class="form-control" name="identity" placeholder="Nomor Induk Siswa Nasional(10 digit angka)" value="{{ old('identity')}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Kelas</label>
+                                <select class="form-control" name="kelas_id" value="{{ old('name')}}">
+                                    <option>-- Pilih Kelas --</option>
+                                    @foreach ($kelas as $row)
+                                    <option value="{{ $row -> id }}">{{ $row -> nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Foto</label>
+                                <input type="file" class="form-control-file border" name="foto">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label>NISN</label>
-                                <input type="text" class="form-control" name="identity" placeholder="Nomor Induk Pengajar(10 digit angka)">
+                                <label>Nama Ibu</label>
+                                <input type="text" class="form-control" name="nama_ibu" placeholder="Nama Ibu" value="{{ old('nama_ibu')}}">
                             </div>
+                            <div class="form-group">
+                                <label>No Hp Ibu</label>
+                                <input type="text" class="form-control" name="no_hp_ibu" placeholder="No.Hp/Whatsapp Ibu" value="{{ old('no_hp_ibu')}}">
+                            </div>
+                            <div class="form-group">
+                                    <label>Nama Ayah</label>
+                                    <input type="text" class="form-control" name="nama_ayah" placeholder="Nama Ayah" value="{{ old('nama_ayah')}}">
+                                </div>
+                                <div class="form-group">
+                                    <label>No Hp Ayah</label>
+                                    <input type="text" class="form-control" name="no_hp_ayah" placeholder="No.Hp/Whatsapp Ayah" value="{{ old('no_hp_ayah')}}">
+                                </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword">Password</label>
                                 <input type="password" class="form-control" name="password" placeholder="Password(min.6 karakter)">
@@ -128,3 +169,14 @@ $title = 'Data Siswa';
     </div> <!-- /.modal-dialog -->
 </div> <!-- /.modal -->
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+
+    @if ($errors->any())
+        $('#modal-lg').modal('show');
+    @endif
+
+</script>
+@endpush
+

@@ -19,4 +19,9 @@ class Kelas extends Model
     {
         return $this->hasMany('App\Siswa');
     }
+
+    public function jadwal()
+    {
+    return $this->hasMany('App\Jadwal');
+    }
 }

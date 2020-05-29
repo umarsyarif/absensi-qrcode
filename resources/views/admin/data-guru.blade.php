@@ -3,6 +3,10 @@ $title = 'Data Guru';
 ?>
 @extends('layouts.main')
 
+@section('header')
+<link rel="stylesheet" type="text/css" href="css/bootstrap-editable.css">
+@stop
+
 @section('title', $title)
 
 @section('content')
@@ -21,13 +25,13 @@ $title = 'Data Guru';
         </div>
         <!-- Main content -->
         <div class="container">
-            @if ($message = Session::get('success'))
+            {{-- @if ($message = Session::get('success'))
                 <div class="alert alert-success alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h4><i class="icon fa fa-check"></i> Success!</h4>
                     {{ $message }}
                   </div>
-                @endif
+                @endif --}}
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title"></h3>
@@ -40,12 +44,13 @@ $title = 'Data Guru';
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>No</th>
                                 <th>NIP</th>
                                 <th>Nama</th>
                                 <th>Jenis Kelamin</th>
                                 <th>Alamat</th>
                                 <th>No Hp</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,9 +59,13 @@ $title = 'Data Guru';
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $row -> user -> identity }}</td>
                                 <td>{{ $row -> user -> name }}</td>
-                                <td>{{ $row -> jenis_kelamin }}</td>
+                                <td>
+                                    <a href="#" class="jenis_kelamin" data-name="jenis_kelamin" data-type="select" data-value="{{$row->jenis_kelamin}}" data-pk="{{ $row -> id }}" data-url="/api/profil/guru/{{$row->id}}" 
+                                    data-title="Pilih Jenis Kelamin">{{ $row -> jenis_kelamin }}</a>
+                                </td>
                                 <td>{{ $row -> alamat }}</td>
                                 <td>{{ $row -> no_hp }}</td>
+                                <td><a href="#" class="btn btn-danger delete" guru_id="{{ $row -> id }}"><i class="fas fa-trash mr-1"></i>Hapus</a></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -137,9 +146,47 @@ $title = 'Data Guru';
 </div> <!-- /.modal -->
 @endsection
 @push('scripts')
+{{-- <script type="text/javascript">
+
+    
+</script> --}}
 <script type="text/javascript">
+
+    $(document).ready(function() {
+    $('.jenis_kelamin').editable(
+        {
+            mode: 'popup', 
+            value: $(this).data('value'),
+            source: [
+              {value: 'Laki-Laki', text: 'Laki-Laki'},
+              {value: 'Perempuan', text: 'Perempuan'}
+           ]
+
+    });
+
+});
+
+$('.delete').click(function(){
+    var guru_id = $(this).attr('guru_id');
+    swal({
+        title: "Apakah Anda Yakin?",
+        text: "Mau Di Hapus Data Ini",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+          window.location = "data-guru/"+ guru_id +"/hapus-guru";  
+        } 
+    });
+});
+
+
+
     @if ($errors->any())
         $('#modal-lg').modal('show');
     @endif
+
 </script>
 @endpush

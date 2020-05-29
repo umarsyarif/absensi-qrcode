@@ -10,4 +10,9 @@ class SiswaController extends Controller
     {
         return view('siswa.dashboard');
     }
+
+    public function showAbsensi()
+    {
+
+    }
 }

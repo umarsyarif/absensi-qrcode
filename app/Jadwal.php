@@ -2,14 +2,12 @@
 
 namespace App;
 
-// use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Jadwal extends Pivot
+class Jadwal extends Model
 {
     protected $table = 'jadwal';
-
-    protected $fillable = ['id', 'mapel_id', 'guru_id', 'kelas_id'];
     
     public function siswa()
     {
@@ -18,11 +16,16 @@ class Jadwal extends Pivot
 
     public function kelas()
     {
-    return $this->belongsToMany('App\Kelas')->using('App\Jadwal');
+    return $this->belongsTo('App\Kelas');
     }
 
     public function mapel()
     {
         return $this->belongsTo('App\Mapel');
+    }
+
+    public function absensi()
+    {
+        return $this->hasMany('App\Absensi');
     }
 }

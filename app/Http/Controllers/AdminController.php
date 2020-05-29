@@ -8,19 +8,29 @@ use App\Siswa;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Jadwal;
+use App\Kelas;
+// use Illuminate\Foundation\Auth\User;
 
 class AdminController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('updateGuru');
+    }
+
+    public function index()
+    {
+        $id = Auth::user()->identity;
+        $user = User::where('identity', $id)->get();
+        return view('dashboard', compact('user'));
     }
 
     public function showGuru()
     {
         $guru = Guru::all();
-        return view('admin.data-guru', compact('guru'));
+        $qr = \QrCode::generate($guru->id);
+        return view('admin.data-guru', compact('guru', 'qr'));
     }
 
     public function createGuru()
@@ -31,13 +41,13 @@ class AdminController extends Controller
     public function storeGuru(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'identity' => 'required|numeric|unique:users',
-            'password' => 'required|string',
-            'confirmation' => 'required|same:password',
-            'jenis_kelamin' => 'required',
-            'alamat'          => 'required',
-            'no_hp'          => 'required|numeric',
+            'name'              => 'required',
+            'identity'          => 'required|numeric|unique:users',
+            'password'          => 'required|string',
+            'confirmation'      => 'required|same:password',
+            'jenis_kelamin'     => 'required',
+            'alamat'            => 'required',
+            'no_hp'             => 'required|numeric',
         ]);
 
         $data = new User;
@@ -48,7 +58,7 @@ class AdminController extends Controller
         $data->save();
 
         $data->guru()->create([
-            'user_id' => $data->id,
+            // 'user_id' => $data->id,
             'jenis_kelamin' => $request->jenis_kelamin,
             'alamat'          => $request->alamat,
             'no_hp'          => $request->no_hp,
@@ -57,30 +67,36 @@ class AdminController extends Controller
         return redirect()->route('data-guru.show')->withSuccess('Data berhasil disimpan!');
     }
 
-    public function updateGuru(Request $request, $id)
+    public function editGuru(User $user)
     {
-        //
+        return compact('user');
     }
 
-    public function destroyGuru($id)
+    public function updateGuru(Request $request, $id)
     {
         $guru = Guru::findOrFail($id);
+        $guru->update([$request->name => $request->value]);
+    }
+
+    public function destroyGuru(Guru $guru)
+    {
         $user = $guru->user;
         $guru->delete();
         $user->delete();
 
-        return redirect()->route('data-guru.show')->withSuccess('Data berhasil dihapus!');
+        return redirect()->route('data-guru.show')->with('sukses','Data berhasil dihapus!');
     }
 
     public function showSiswa()
     {
         $siswa = Siswa::all();
-        return view('admin.data-siswa', compact('siswa'));
+        $kelas = Kelas::all();
+        return view('admin.data-siswa', compact('siswa', 'kelas'));
     }
 
     public function createSiswa()
     {
-        //
+        return view('admin.tambah-data-siswa');
     }
 
     public function storeSiswa(Request $request)
@@ -93,6 +109,11 @@ class AdminController extends Controller
             'jenis_kelamin' => 'required',
             'alamat'        => 'required',
             'no_hp'         => 'required|numeric',
+            'kelas_id'      => 'required',
+            'nama_ibu'      => 'required',
+            'no_hp_ibu'     => 'required',
+            'nama_ayah'     => 'required',
+            'no_hp_ayah'    => 'required'
         ]);
 
         $data = new User;
@@ -103,12 +124,17 @@ class AdminController extends Controller
         $data->save();
 
         $data->siswa()->create([
-            'user_id'       => $data->id,
+            'kelas_id'      => $request->kelas_id,
             'jenis_kelamin' => $request->jenis_kelamin,
             'alamat'        => $request->alamat,
             'no_hp'         => $request->no_hp,
+            'nama_ibu'      => $request->nama_ibu,
+            'no_hp_ibu'     => $request->no_hp_ibu,
+            'nama_ayah'     => $request->nama_ayah,
+            'no_hp_ayah'    => $request->no_hp_ayah
         ]);
 
+        
         return redirect()->route('data-siswa.show')->withSuccess('Data berhasil disimpan!');
     }
 
@@ -131,8 +157,8 @@ class AdminController extends Controller
         // $siswa = Siswa::where('id_kelas', $data)->get();
         //  $id -> user->guru->id;
         $id = Auth::user()->guru->id; 
-        $jadwal = Jadwal::all();
-        //dd($jadwal);
+        $jadwal = Jadwal::where('guru_id', $id)->get();
+        // dd($jadwal);
         return view('guru.absensi-siswa', compact('jadwal'));
     }
 

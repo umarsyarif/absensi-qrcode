@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ed283348-7b37-4ecc-9d11-3627c70a081b" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/KurikulumController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/TuController.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Absensi.php" afterPath="$PROJECT_DIR$/app/Absensi.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/GuruController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/GuruController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/SiswaController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SiswaController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Jadwal.php" afterPath="$PROJECT_DIR$/app/Jadwal.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Kelas.php" afterPath="$PROJECT_DIR$/app/Kelas.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/guru/absensi-siswa.blade.php" afterPath="$PROJECT_DIR$/resources/views/guru/absensi-siswa.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="PHP//media/randi/visca el barca/Sistem Absensi/absensi-qrcode/app/Http/Controllers" pinned="false" current-in-tab="true">
+        <entry file="uml://PHP//media/randi/visca el barca/Sistem Absensi/absensi-qrcode/app/Http/Controllers">
+          <provider selected="true" editor-type-id="UmlEditorProvider">
+            <state>
+              <ID>PHP</ID>
+              <OriginalElement>$PROJECT_DIR$/app/Http/Controllers</OriginalElement>
+              <nodes>
+                <node x="602.0" y="393.5">\App\Http\Controllers\SiswaController</node>
+                <node x="438.0" y="393.0">\App\Http\Controllers\HomeController</node>
+                <node x="286.0" y="0.0">\Illuminate\Routing\Controller</node>
+                <node x="371.5" y="197.0">\App\Http\Controllers\Controller</node>
+                <node x="0.0" y="631.0">$PROJECT_DIR$/app/Http/Controllers/Auth</node>
+                <node x="228.0" y="370.5">\App\Http\Controllers\GuruController</node>
+                <node x="0.0" y="278.0">\App\Http\Controllers\AdminController</node>
+              </nodes>
+              <notes />
+              <edges>
+                <edge source="\App\Http\Controllers\HomeController" target="\App\Http\Controllers\Controller">
+                  <point x="0.0" y="-39.0" />
+                  <point x="510.0" y="258.0" />
+                  <point x="427.75" y="258.0" />
+                  <point x="11.25" y="15.5" />
+                </edge>
+                <edge source="\App\Http\Controllers\Controller" target="\Illuminate\Routing\Controller">
+                  <point x="0.0" y="-15.5" />
+                  <point x="0.0" y="73.5" />
+                </edge>
+                <edge source="\App\Http\Controllers\AdminController" target="\App\Http\Controllers\Controller">
+                  <point x="0.0" y="-154.0" />
+                  <point x="104.0" y="248.0" />
+                  <point x="382.75" y="248.0" />
+                  <point x="-33.75" y="15.5" />
+                </edge>
+                <edge source="\App\Http\Controllers\SiswaController" target="\App\Http\Controllers\Controller">
+                  <point x="0.0" y="-38.5" />
+                  <point x="671.5" y="248.0" />
+                  <point x="450.25" y="248.0" />
+                  <point x="33.75" y="15.5" />
+                </edge>
+                <edge source="\App\Http\Controllers\GuruController" target="\App\Http\Controllers\Controller">
+                  <point x="0.0" y="-61.5" />
+                  <point x="323.0" y="258.0" />
+                  <point x="405.25" y="258.0" />
+                  <point x="-11.25" y="15.5" />
+                </edge>
+              </edges>
+              <settings layout="Hierarchic Group" zoom="0.9" x="291.66666666666663" y="304.88888888888886" />
+              <SelectedNodes />
+              <Categories>
+                <Category>Fields</Category>
+                <Category>Constants</Category>
+                <Category>Constructors</Category>
+                <Category>Methods</Category>
+              </Categories>
+              <VISIBILITY>private</VISIBILITY>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SiswaController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SiswaController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SiswaController.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="width" value="1346" />
+    <option name="height" value="678" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="absensi-qrcode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="absensi-qrcode" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="absensi-qrcode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="absensi-qrcode" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="absensi-qrcode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="absensi-qrcode" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="absensi-qrcode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="absensi-qrcode" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path" value="/usr/bin/node" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ed283348-7b37-4ecc-9d11-3627c70a081b" name="Default" comment="" />
+      <created>1589650087047</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589650087047</updated>
+      <workItem from="1589650170684" duration="284000" />
+      <workItem from="1589650572957" duration="2056000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="2340000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1366" height="718" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16105418" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SiswaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP//media/randi/visca el barca/Sistem Absensi/absensi-qrcode/app/Http/Controllers">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>$PROJECT_DIR$/app/Http/Controllers</OriginalElement>
+          <nodes>
+            <node x="602.0" y="393.5">\App\Http\Controllers\SiswaController</node>
+            <node x="438.0" y="393.0">\App\Http\Controllers\HomeController</node>
+            <node x="286.0" y="0.0">\Illuminate\Routing\Controller</node>
+            <node x="371.5" y="197.0">\App\Http\Controllers\Controller</node>
+            <node x="0.0" y="631.0">$PROJECT_DIR$/app/Http/Controllers/Auth</node>
+            <node x="228.0" y="370.5">\App\Http\Controllers\GuruController</node>
+            <node x="0.0" y="278.0">\App\Http\Controllers\AdminController</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="\App\Http\Controllers\HomeController" target="\App\Http\Controllers\Controller">
+              <point x="0.0" y="-39.0" />
+              <point x="510.0" y="258.0" />
+              <point x="427.75" y="258.0" />
+              <point x="11.25" y="15.5" />
+            </edge>
+            <edge source="\App\Http\Controllers\Controller" target="\Illuminate\Routing\Controller">
+              <point x="0.0" y="-15.5" />
+              <point x="0.0" y="73.5" />
+            </edge>
+            <edge source="\App\Http\Controllers\AdminController" target="\App\Http\Controllers\Controller">
+              <point x="0.0" y="-154.0" />
+              <point x="104.0" y="248.0" />
+              <point x="382.75" y="248.0" />
+              <point x="-33.75" y="15.5" />
+            </edge>
+            <edge source="\App\Http\Controllers\SiswaController" target="\App\Http\Controllers\Controller">
+              <point x="0.0" y="-38.5" />
+              <point x="671.5" y="248.0" />
+              <point x="450.25" y="248.0" />
+              <point x="33.75" y="15.5" />
+            </edge>
+            <edge source="\App\Http\Controllers\GuruController" target="\App\Http\Controllers\Controller">
+              <point x="0.0" y="-61.5" />
+              <point x="323.0" y="258.0" />
+              <point x="405.25" y="258.0" />
+              <point x="-11.25" y="15.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.9" x="291.66666666666663" y="304.88888888888886" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Constants</Category>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+          </Categories>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

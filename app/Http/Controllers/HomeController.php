@@ -24,11 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $role = Auth::user()->role->name;
+        $user = Auth::user();
+        $role = $user->role->name;
         if (view()->exists("{$role}.dashboard")) {
-            return view("{$role}.dashboard");
+            return view("{$role}.dashboard", compact("user"));
         }
 
         return abort(404);
+
     }
 }
