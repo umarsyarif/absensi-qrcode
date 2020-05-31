@@ -56,7 +56,7 @@ class GuruController extends Controller
             ]);
         }
 
-        return redirect()->route('absensi-siswa.show-scan', $data)->withSuccess('Data berhasil disimpan!');
+        return redirect()->route('absensi-siswa.edit', $data)->withSuccess('Data berhasil disimpan!');
     }
 
     public function editAbsensi(Jadwal $jadwal)

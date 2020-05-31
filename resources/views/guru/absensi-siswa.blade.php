@@ -27,7 +27,7 @@ $title = 'Absensi Siswa';
                     <h4><i class="icon fa fa-check"></i> Success!</h4>
                     {{ $message }}
                   </div>
-                @endif --}}
+            @endif --}}
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Data Jadwal</h3>
@@ -56,7 +56,7 @@ $title = 'Absensi Siswa';
                                     <td>{{ $row -> created_at }}</td>
                                     <td>
                                         <a href="#" class="btn btn-danger mr-2"><i class="fas fa-trash mr-1"></i></a>
-                                        <a href="{{ route('absensi-siswa.show-scan', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit mr-1"></i>Edit Absensi</a>
+                                        <a href="{{ route('absensi-siswa.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit mr-1"></i>Edit Absensi</a>
                                     </td>
                                 </tr>
                             @endforeach
