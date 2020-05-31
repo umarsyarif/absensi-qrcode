@@ -14,39 +14,27 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
-            <a href="{{route('dashboard')}}" class="nav-link {{$title == 'Dashboard' ? 'active' : ''}}">
-              <i class="nav-icon fas fa-home"></i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-           {{-- Menu Admin --}}
-          @if (Auth::user()->role->name == 'admin')
             <li class="nav-item">
-                <a href="{{route('data-guru.show')}}" class="nav-link {{$title == 'Data Guru' ? 'active' : ''}}">
-                <i class="nav-icon fas fa-chart-line"></i>
-                <p>Data Guru</p>
+                <a href="{{route('dashboard')}}" class="nav-link {{$title == 'Dashboard' ? 'active' : ''}}">
+                    <i class="nav-icon fas fa-home"></i>
+                    <p>Dashboard</p>
                 </a>
             </li>
-          @endif
+            {{-- Menu Admin --}}
+            @if (Auth::user()->role->name == 'admin')
+                @include('admin.sidebar')
+            @endif
 
-          @if (Auth::user()->role->name == 'admin')
-            <li class="nav-item">
-                <a href="{{route('data-siswa.show')}}" class="nav-link {{$title == 'Data Siswa' ? 'active' : ''}}">
-                <i class="nav-icon fas fa-chart-line"></i>
-                <p>Data Siswa</p>
-                </a>
-            </li>
-          @endif
+            {{-- Menu Guru --}}
+            @if (Auth::user()->role->name == 'guru')
+                @include('guru.sidebar')
+            @endif
 
-          @if (Auth::user()->role->name == 'guru')
-          <li class="nav-item">
-              <a href="{{route('absensi-siswa.show')}}" class="nav-link {{$title == 'Absensi Siswa' ? 'active' : ''}}">
-              <i class="nav-icon fas fa-chart-line"></i>
-              <p>Absensi</p>
-              </a>
-          </li>
-        @endif
+            {{-- Menu Siswa --}}
+            @if (Auth::user()->role->name == 'siswa')
+                @include('siswa.sidebar')
+            @endif
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
