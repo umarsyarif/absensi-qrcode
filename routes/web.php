@@ -30,12 +30,12 @@ Route::prefix('data-siswa')->name('data-siswa.')->group(function () {
     Route::get('/create-siswa', 'AdminController@createSiswa')->name('create');
     Route::post('/', 'AdminController@storeSiswa')->name('store');
     Route::get('/', 'AdminController@showSiswa')->name('show');
-    
 });
 
 // GURU ROUTES
 Route::prefix('absensi-siswa')->name('absensi-siswa.')->group(function () {
     Route::post('/', 'GuruController@storeJadwal')->name('store');
     Route::get('/', 'GuruController@showAbsensi')->name('show');
-    Route::get('/scan-qrcode/{jadwal}', 'GuruController@showScanabsen')->name('show-scan');
+    Route::get('/scan-qrcode/{jadwal}', 'GuruController@editAbsensi')->name('edit');
+    Route::post('/{jadwal}', 'GuruController@updateAbsensi')->name('update');
 });

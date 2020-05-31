@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Jadwal;
 use App\Kelas;
-// use Illuminate\Foundation\Auth\User;
 
 class AdminController extends Controller
 {
@@ -29,8 +28,7 @@ class AdminController extends Controller
     public function showGuru()
     {
         $guru = Guru::all();
-        // $qr = \QrCode::generate($guru);
-        return view('admin.data-guru', compact('guru', 'qr'));
+        return view('admin.data-guru', compact('guru'));
     }
 
     public function createGuru()
@@ -84,7 +82,7 @@ class AdminController extends Controller
         $guru->delete();
         $user->delete();
 
-        return redirect()->route('data-guru.show')->with('sukses','Data berhasil dihapus!');
+        return redirect()->route('data-guru.show')->with('sukses', 'Data berhasil dihapus!');
     }
 
     public function showSiswa()
@@ -134,7 +132,7 @@ class AdminController extends Controller
             'no_hp_ayah'    => $request->no_hp_ayah
         ]);
 
-        
+
         return redirect()->route('data-siswa.show')->withSuccess('Data berhasil disimpan!');
     }
 
@@ -143,10 +141,11 @@ class AdminController extends Controller
         //
     }
 
-    public function showAbsensi(){
+    public function showAbsensi()
+    {
         // $guru = Guru::findOrFail(Auth::user()->guru->id);
         // $kelas = $guru->kelas;
-        
+
         //$id_kelas = $jadwal->kelas->id;
         //$siswa = Siswa::where('id_kelas', $id_kelas)->get();
 
@@ -156,13 +155,12 @@ class AdminController extends Controller
         // $data ->jadwal->kelas->id;
         // $siswa = Siswa::where('id_kelas', $data)->get();
         //  $id -> user->guru->id;
-        $id = Auth::user()->guru->id; 
+        $id = Auth::user()->guru->id;
         $jadwal = Jadwal::where('guru_id', $id)->get();
         // dd($jadwal);
         return view('guru.absensi-siswa', compact('jadwal'));
     }
 
-    public function storeAbsensi(){
-    
-    }
+    public function storeAbsensi()
+    { }
 }

@@ -97,7 +97,7 @@ $title = 'Data Siswa';
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" class="form-control" name="name" placeholder="Nama Lengkap" value="{{ old('name')}}">
+                                <input type="text" class="form-control" name="name" placeholder="Nama Lengkap" value="{{ old('name')}}" required>
                             </div>
                             <div class="form-group">
                                 <label>Jenis Kelamin</label>
@@ -108,20 +108,20 @@ $title = 'Data Siswa';
                             </div>
                             <div class="form-group">
                                 <label>Alamat</label>
-                                <input type="text" class="form-control" name="alamat" placeholder="Alamat Lengkap" value="{{ old('alamat')}}">
+                                <input type="text" class="form-control" name="alamat" placeholder="Alamat Lengkap" value="{{ old('alamat')}}" required>
                             </div>
                             <div class="form-group">
                                 <label>No Hp</label>
-                                <input type="text" class="form-control" name="no_hp" placeholder="No.Hp/Whatsapp" value="{{ old('no_hp')}}">
+                                <input type="text" class="form-control" name="no_hp" placeholder="No.Hp/Whatsapp" value="{{ old('no_hp')}}" required>
                             </div>
                             <div class="form-group">
                                     <label>NISN</label>
-                                    <input type="text" class="form-control" name="identity" placeholder="Nomor Induk Siswa Nasional(10 digit angka)" value="{{ old('identity')}}">
+                                    <input type="text" class="form-control" name="identity" placeholder="Nomor Induk Siswa Nasional(10 digit angka)" value="{{ old('identity')}}" required>
                             </div>
                             <div class="form-group">
                                 <label>Kelas</label>
-                                <select class="form-control" name="kelas_id" value="{{ old('name')}}">
-                                    <option>-- Pilih Kelas --</option>
+                                <select class="form-control" name="kelas_id" value="{{ old('name')}}" required>
+                                    <option value="">-- Pilih Kelas --</option>
                                     @foreach ($kelas as $row)
                                     <option value="{{ $row -> id }}">{{ $row -> nama }}</option>
                                     @endforeach
@@ -135,27 +135,27 @@ $title = 'Data Siswa';
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Nama Ibu</label>
-                                <input type="text" class="form-control" name="nama_ibu" placeholder="Nama Ibu" value="{{ old('nama_ibu')}}">
+                                <input type="text" class="form-control" name="nama_ibu" placeholder="Nama Ibu" value="{{ old('nama_ibu')}}" required>
                             </div>
                             <div class="form-group">
                                 <label>No Hp Ibu</label>
-                                <input type="text" class="form-control" name="no_hp_ibu" placeholder="No.Hp/Whatsapp Ibu" value="{{ old('no_hp_ibu')}}">
+                                <input type="text" class="form-control" name="no_hp_ibu" placeholder="No.Hp/Whatsapp Ibu" value="{{ old('no_hp_ibu')}}" required>
                             </div>
                             <div class="form-group">
                                     <label>Nama Ayah</label>
-                                    <input type="text" class="form-control" name="nama_ayah" placeholder="Nama Ayah" value="{{ old('nama_ayah')}}">
+                                    <input type="text" class="form-control" name="nama_ayah" placeholder="Nama Ayah" value="{{ old('nama_ayah')}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label>No Hp Ayah</label>
-                                    <input type="text" class="form-control" name="no_hp_ayah" placeholder="No.Hp/Whatsapp Ayah" value="{{ old('no_hp_ayah')}}">
+                                    <input type="text" class="form-control" name="no_hp_ayah" placeholder="No.Hp/Whatsapp Ayah" value="{{ old('no_hp_ayah')}}" required>
                                 </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword">Password</label>
-                                <input type="password" class="form-control" name="password" placeholder="Password(min.6 karakter)">
+                                <input type="password" class="form-control" name="password" placeholder="Password(min.6 karakter)" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Confirmation Password</label>
-                                <input type="password" class="form-control" name="confirmation" placeholder="Konfirmasi Password">
+                                <input type="password" class="form-control" name="confirmation" placeholder="Konfirmasi Password" required>
                             </div>
                         </div>
                     </div>
