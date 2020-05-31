@@ -29,7 +29,7 @@ class AdminController extends Controller
     public function showGuru()
     {
         $guru = Guru::all();
-        $qr = \QrCode::generate($guru->id);
+        // $qr = \QrCode::generate($guru);
         return view('admin.data-guru', compact('guru', 'qr'));
     }
 

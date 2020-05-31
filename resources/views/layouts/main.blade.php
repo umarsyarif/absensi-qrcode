@@ -37,7 +37,7 @@
     </div>
     
     <script src="{{asset('js/app.js')}}"></script>
-    <script src="js/bootstrap-editable.min.js"></script>
+    <script src="/js/bootstrap-editable.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @yield('footer-qr')

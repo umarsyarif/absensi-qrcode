@@ -4,8 +4,8 @@ $title = 'Scan Absensi QR - Code Siswa';
 @extends('layouts.main')
 
 @section('header-qr')
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
 @stop
 
 @section('title', $title)
@@ -30,15 +30,17 @@ $title = 'Scan Absensi QR - Code Siswa';
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="navbar-form navbar-left">
-                        <h4>WebCodeCamJS.js Demonstration</h4>
+                        <h4>Live Scan QR-Code</h4>
                     </div>
                     <div class="navbar-form navbar-right">
                         <select class="form-control" id="camera-select"></select>
                         <div class="form-group">
                             <input id="image-url" type="text" class="form-control" placeholder="Image url">
-                            <button title="Play" class="btn btn-success btn-sm" id="play" type="button" data-toggle="tooltip"><i class="fas fa-play-circle"></i></button>
-                            <button title="Pause" class="btn btn-warning btn-sm" id="pause" type="button" data-toggle="tooltip"><i class="fa fa-pause-circle"></i></button>
-                            <button title="Stop streams" class="btn btn-danger btn-sm" id="stop" type="button" data-toggle="tooltip"><i class="fa fa-stop-circle"></i></button>
+                            <button title="Decode Image" class="btn btn-default btn-sm" id="decode-img" type="button" data-toggle="tooltip"><span class="glyphicon glyphicon-upload"></span></button>
+                            <button title="Image shoot" class="btn btn-info btn-sm disabled" id="grab-img" type="button" data-toggle="tooltip"><span class="glyphicon glyphicon-picture"></span></button>
+                            <button title="Play" class="btn btn-success btn-sm" id="play" type="button" data-toggle="tooltip"><span class="glyphicon glyphicon-play"></span></button>
+                            <button title="Pause" class="btn btn-warning btn-sm" id="pause" type="button" data-toggle="tooltip"><span class="glyphicon glyphicon-pause"></span></button>
+                            <button title="Stop streams" class="btn btn-danger btn-sm" id="stop" type="button" data-toggle="tooltip"><span class="glyphicon glyphicon-stop"></span></button>
                          </div>
                     </div>
                 </div>
@@ -136,11 +138,11 @@ $title = 'Scan Absensi QR - Code Siswa';
 
 @section('footer-qr')
 
-        <script type="text/javascript" src="js/filereader.js"></script>
+        <script src="/js/filereader.js"></script>
         <!-- Using jquery version: -->
-        <script type="text/javascript" src="js/qrcodelib.js"></script>
-        <script type="text/javascript" src="js/webcodecamjs.js"></script>
-        <script type="text/javascript" src="js/main-qr.js"></script>
+        <script src="/js/qrcodelib.js"></script>
+        <script src="/js/webcodecamjs.js"></script>
+        <script src="/js/main-qr.js"></script>
 @stop
 
 @endsection
