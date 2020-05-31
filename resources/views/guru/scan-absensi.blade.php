@@ -1,9 +1,14 @@
 <?php
-$title = 'Scan Absensi QR - Code Siswa';
+$title = 'Edit Absensi';
 ?>
 @extends('layouts.main')
 
 @section('title', $title)
+
+@section('header')
+  {{-- <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/style.css')}}"> --}}
+@endsection
 
 @section('content')
     <div id="app">
@@ -20,9 +25,8 @@ $title = 'Scan Absensi QR - Code Siswa';
                 </div>
             </div>
             <!-- Main content -->
-
         <div class="container" id="QR-Code">
-            <div class="panel panel-info">
+            {{-- <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="navbar-form navbar-left">
                         <h4>Live Scan QR-Code</h4>
@@ -103,23 +107,15 @@ $title = 'Scan Absensi QR - Code Siswa';
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
+            <qrscanner-component
+            id-jadwal = {{$jadwal->id}}
+            ></qrscanner-component>
 
             <div class="container">
-                {{-- @if ($message = Session::get('success'))
-                    <div class="alert alert-success alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h4><i class="icon fa fa-check"></i> Success!</h4>
-                        {{ $message }}
-                    </div>
-                    @endif --}}
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Data Jadwal</h3>
-                        <button type="button" style="float:right" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
-                            + Tambah Data
-                        </button>
-                        {{-- <a href="{{ route('data-guru.create') }}">Tambah</a> --}}
                     </div> <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
@@ -136,7 +132,6 @@ $title = 'Scan Absensi QR - Code Siswa';
                                 @foreach ($absensi as $row)
                                     <tr>
                                         <td>{{ $loop -> iteration }}</td>
-                                        <input id="identity" type="hidden" value="{{ $row -> siswa -> user-> identity }}">
                                         <td>{{ $row -> siswa -> user-> name }}</td>
                                         <td>{{ $row -> status == 1 ? 'Hadir' : 'Tidak Hadir' }}</td>
                                         <td>{{ $row -> created_at }}</td>
@@ -154,9 +149,9 @@ $title = 'Scan Absensi QR - Code Siswa';
 @endsection
 
 @push('scripts')
-    <script type="text/javascript" src="{{asset('js/filereader.js')}}"></script>
+    {{-- <script type="text/javascript" src="{{asset('js/filereader.js')}}"></script>
     <!-- Using jquery version: -->
     <script type="text/javascript" src="{{asset('js/qrcodelib.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/webcodecamjs.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/main-qr.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/main-qr.js')}}"></script> --}}
 @endpush

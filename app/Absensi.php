@@ -8,7 +8,12 @@ class Absensi extends Model
 {
     protected $table = 'absensi';
 
-    protected $fillable = [ 'siswa_id', 'jadwal_id', 'status'];
+    protected $fillable = ['siswa_id', 'jadwal_id', 'status'];
+
+    public function setKehadiran()
+    {
+        $this->update(['status' => true]);
+    }
 
     public function jadwal()
     {
