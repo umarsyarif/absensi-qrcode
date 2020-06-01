@@ -20,7 +20,7 @@ $title = 'Rekap Absensi';
                         <div class="col-sm-6">
                             <h1 class="m-0 text-dark">{{$title}}</h1>
                         </div>
-                        @include('partials.breadcrumb', ['breadcrumbs' => ['absensi-siswa.show' => 'Absensi']])
+                        @include('partials.breadcrumb', ['breadcrumbs' => ['' => 'Absensi']])
                     </div>
                 </div>
             </div>
