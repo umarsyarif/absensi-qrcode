@@ -17,7 +17,6 @@ class CreateMapelTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama');
             $table->string('singkatan');
-            $table->integer('bobot');
             $table->timestamps();
         });
     }

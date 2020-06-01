@@ -12,7 +12,7 @@ class Absensi extends Model
 
     public function setKehadiran()
     {
-        $this->update(['status' => true]);
+        $this->update(['status' => 'Hadir']);
     }
 
     public function jadwal()
