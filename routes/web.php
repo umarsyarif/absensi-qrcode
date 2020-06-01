@@ -39,3 +39,10 @@ Route::prefix('absensi-siswa')->name('absensi-siswa.')->group(function () {
     Route::get('/scan-qrcode/{jadwal}', 'GuruController@editAbsensi')->name('edit');
     Route::post('/{jadwal}', 'GuruController@updateAbsensi')->name('update');
 });
+
+Route::prefix('rekap-absensi')->name('rekap-absensi.')->group(function () {
+    Route::post('/', 'GuruController@searchRekap')->name('store');
+    Route::get('/', 'GuruController@showRekap')->name('show');
+    // Route::get('/scan-qrcode/{jadwal}', 'GuruController@editAbsensi')->name('edit');
+    // Route::post('/{jadwal}', 'GuruController@updateAbsensi')->name('update');
+});
