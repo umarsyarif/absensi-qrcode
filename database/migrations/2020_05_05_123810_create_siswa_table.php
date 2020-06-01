@@ -24,6 +24,7 @@ class CreateSiswaTable extends Migration
             $table->string('no_hp_ibu');
             $table->string('nama_ayah');
             $table->string('no_hp_ayah');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }
