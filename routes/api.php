@@ -14,10 +14,10 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::prefix('profil')->name('profil.')->group(function(){
+Route::prefix('profil')->name('profil.')->group(function () {
     Route::post('/guru/{id}', 'AdminController@updateGuru')->name('guru');
 });

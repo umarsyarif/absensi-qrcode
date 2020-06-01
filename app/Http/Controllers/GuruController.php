@@ -52,7 +52,7 @@ class GuruController extends Controller
             $data->absensi()->create([
                 'siswa_id'  => $id,
                 'jadwal_id' => $data->id,
-                'status'    => false
+                'status'    => 'Tidak Hadir'
             ]);
         }
 
@@ -84,34 +84,47 @@ class GuruController extends Controller
         return $data;
     }
 
-    public function showRekap()
+    public function showRekap(Request $request)
     {
-        $kelas = kelas::all();
+        $selectedMapel = optional($request)->mapel;
+        $selectedKelas = optional($request)->kelas;
+        $kelas = Kelas::all();
         $mapel = Mapel::all();
-        return view('guru.rekap-absensi', compact('jadwal', 'kelas', 'mapel'));
-    }
-
-    public function searchRekap(Request $request)
-    {
-        $this->validate(
-            $request,
-            [
-                'mapel_id' => 'required',
-                'kelas_id' => 'required'
-            ]
-        );
-
-        $id_guru = Auth::user()->guru->id;
-        $mapel_id = $request->mapel_id;
-        $kelas_id = $request->kelas_id;
-
-        $id_jadwal = Jadwal::where('mapel_id', $mapel_id 
-        && 'id_guru', $id_guru && 'kelas_id', $kelas_id)->pluck('id');
-        
-        foreach ($id_jadwal as $id) {
-            $absensi = Absensi::where('jadwal_id', $id)->get();
+        $siswa = null;
+        if (!is_null($selectedKelas) && !is_null($selectedMapel)) {
+            $siswa = Siswa::where('kelas_id', $selectedKelas)->with(['user', 'absensi.jadwal' => function ($query) use ($selectedMapel) {
+                $query->where('mapel_id', $selectedMapel);
+            }])->get();
         }
-        
-        return view('guru.rekap-absensi', compact('absensi'));
+        return view('guru.rekap-absensi', compact('kelas', 'mapel', 'siswa'));
     }
+
+    public function showRekapDetail(Request $request, Siswa $siswa)
+    {
+        // $absensi = Jadwal::
+    }
+
+    // public function searchRekap(Request $request)
+    // {
+    //     $this->validate(
+    //         $request,
+    //         [
+    //             'mapel_id' => 'required',
+    //             'kelas_id' => 'required'
+    //         ]
+    //     );
+
+    //     $id_guru = Auth::user()->guru->id;
+    //     $mapel_id = $request->mapel_id;
+    //     $kelas_id = $request->kelas_id;
+
+    //     $id_jadwal = Jadwal::where('mapel_id', $mapel_id
+    //         && 'id_guru', $id_guru && 'kelas_id', $kelas_id)->pluck('id');
+
+    //     foreach ($id_jadwal as $id) {
+    //         $absensi = Absensi::where('jadwal_id', $id)->get();
+    //     }
+
+    //     return view('guru.rekap-absensi', compact('absensi'));
+    // }
 }

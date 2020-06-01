@@ -27,7 +27,7 @@ $title = 'Absensi Siswa';
                     <h4><i class="icon fa fa-check"></i> Success!</h4>
                     {{ $message }}
                   </div>
-                @endif --}}
+            @endif --}}
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Data Jadwal</h3>

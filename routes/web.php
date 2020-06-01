@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth.loginv1');
-})->name('home');
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('home');
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 

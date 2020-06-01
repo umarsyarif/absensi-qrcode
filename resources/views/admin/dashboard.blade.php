@@ -15,7 +15,7 @@ $title = 'Dashboard';
                     <div class="col-sm-6">
                         <h1 class="m-0 text-dark">{{$title}}</h1>
                     </div>
-                    @include('partials.breadcrumb', ['breadcrumbs' => ['search.index' => 'Pencarian']])
+                    {{-- @include('partials.breadcrumb', ['breadcrumbs' => ['search.index' => 'Pencarian']]) --}}
                 </div>
             </div>
         </div>
@@ -32,11 +32,11 @@ $title = 'Dashboard';
                          src="images/user.png"
                          alt="User profile picture">
                   </div>
-  
+
                   <h3 class="profile-username text-center">Nina Mcintire</h3>
-  
+
                   <p class="text-muted text-center">Software Engineer</p>
-  
+
                   <ul class="list-group list-group-unbordered mb-3">
                     <li class="list-group-item">
                       <b>Followers</b> <a class="float-right">1,322</a>
@@ -48,7 +48,7 @@ $title = 'Dashboard';
                       <b>Friends</b> <a class="float-right">13,287</a>
                     </li>
                   </ul>
-  
+
                   <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
                 </div>
                 <!-- /.card-body -->
@@ -60,28 +60,28 @@ $title = 'Dashboard';
                 <div class="card card-primary card-outline">
                 <div class="card-body">
                 <h5 class="card-title">Biodata</h5>
-                
+
                 <br><hr>
                 {{-- @foreach ($user as $row) --}}
                 <div class="form-group">
-                    <label>Name :</label>                  
+                    <label>Name :</label>
                     <input type="text" class="form-control" name="name" value="{{ $user->name  }}">
-                </div> 
+                </div>
 
                 <div class="form-group">
-                    <label>Jenis Kelamin :</label>                  
+                    <label>Jenis Kelamin :</label>
                     {{-- <input type="text" class="form-control" name="name" value="{{ $row->name  }}"> --}}
-                </div> 
+                </div>
 
                 <div class="form-group">
-                    <label>Alamat :</label>                  
+                    <label>Alamat :</label>
                     {{-- <input type="text" class="form-control" name="name" value="{{ $row->name  }}"> --}}
-                </div> 
+                </div>
 
                 <div class="form-group">
-                    <label>No Hp :</label>                  
+                    <label>No Hp :</label>
                     {{-- <input type="text" class="form-control" name="name" value="{{ $row->name  }}"> --}}
-                </div> 
+                </div>
 
                 {{-- @endforeach --}}
                 </div>

@@ -15,7 +15,7 @@ $title = 'Dashboard';
                     <div class="col-sm-6">
                         <h1 class="m-0 text-dark">{{$title}}</h1>
                     </div>
-                    @include('partials.breadcrumb', ['breadcrumbs' => ['search.index' => 'Pencarian']])
+                    {{-- @include('partials.breadcrumb', ['breadcrumbs' => ['search.index' => 'Pencarian']]) --}}
                 </div>
             </div>
         </div>

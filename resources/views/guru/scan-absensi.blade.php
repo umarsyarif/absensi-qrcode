@@ -51,7 +51,7 @@ $title = 'Edit Absensi';
                                     <tr>
                                         <td>{{ $loop -> iteration }}</td>
                                         <td>{{ $row -> siswa -> user-> name }}</td>
-                                        <td>{{ $row -> status == 1 ? 'Hadir' : 'Tidak Hadir' }}</td>
+                                        <td>{{ $row -> status }}</td>
                                         <td>{{ $row -> created_at }}</td>
                                         <td>{{ $row -> updated_at }}</td>
                                     </tr>
