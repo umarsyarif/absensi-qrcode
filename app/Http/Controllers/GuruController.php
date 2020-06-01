@@ -56,7 +56,7 @@ class GuruController extends Controller
             ]);
         }
 
-        return redirect()->route('absensi-siswa.show-scan', $data)->withSuccess('Data berhasil disimpan!');
+        return redirect()->route('absensi-siswa.edit', $data)->withSuccess('Data berhasil disimpan!');
     }
 
     public function editAbsensi(Jadwal $jadwal)
@@ -82,5 +82,36 @@ class GuruController extends Controller
             'data' => $absensi
         ];
         return $data;
+    }
+
+    public function showRekap()
+    {
+        $kelas = kelas::all();
+        $mapel = Mapel::all();
+        return view('guru.rekap-absensi', compact('jadwal', 'kelas', 'mapel'));
+    }
+
+    public function searchRekap(Request $request)
+    {
+        $this->validate(
+            $request,
+            [
+                'mapel_id' => 'required',
+                'kelas_id' => 'required'
+            ]
+        );
+
+        $id_guru = Auth::user()->guru->id;
+        $mapel_id = $request->mapel_id;
+        $kelas_id = $request->kelas_id;
+
+        $id_jadwal = Jadwal::where('mapel_id', $mapel_id 
+        && 'id_guru', $id_guru && 'kelas_id', $kelas_id)->pluck('id');
+        
+        foreach ($id_jadwal as $id) {
+            $absensi = Absensi::where('jadwal_id', $id)->get();
+        }
+        
+        return view('guru.rekap-absensi', compact('absensi'));
     }
 }

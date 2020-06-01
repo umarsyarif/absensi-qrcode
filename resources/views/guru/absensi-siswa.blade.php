@@ -56,7 +56,7 @@ $title = 'Absensi Siswa';
                                     <td>{{ $row -> created_at }}</td>
                                     <td>
                                         <a href="#" class="btn btn-danger mr-2"><i class="fas fa-trash mr-1"></i></a>
-                                        <a href="{{ route('absensi-siswa.show-scan', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit mr-1"></i>Edit Absensi</a>
+                                        <a href="{{ route('absensi-siswa.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit mr-1"></i>Edit Absensi</a>
                                     </td>
                                 </tr>
                             @endforeach
