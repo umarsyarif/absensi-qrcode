@@ -11,7 +11,8 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
   @yield('header')
 
 </head>
@@ -33,12 +34,12 @@
     </div>
     <script src="{{asset('js/app.js')}}"></script>
 
-    <script src="/datatables/jquery.dataTables.js"></script>
-<script src="/datatables-bs4/dataTables.bootstrap4.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
     <script src="{{asset('js/bootstrap-editable.min.js')}}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @stack('scripts')
 
     <script>
