@@ -45,6 +45,8 @@ export default {
           if (response.data.status) {
             toastr.success(response.data.message, "Berhasil");
             this.result = result;
+          } else {
+            toastr.warning(response.data.message, "Gagal");
           }
         })
         .catch(error => {
