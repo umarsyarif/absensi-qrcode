@@ -1,5 +1,7 @@
 <?php
 $title = 'Rekap Absensi';
+$selectedMapel = Request::get('mapel');
+$selectedKelas = Request::get('kelas');
 ?>
 @extends('layouts.main')
 
@@ -37,7 +39,7 @@ $title = 'Rekap Absensi';
                                 <select class="custom-select" name="mapel" required>
                                     <option value="" selected>-- Pilih Mapel --</option>
                                     @foreach ($mapel as $row)
-                                    <option value="{{ $row->id }}">{{ $row->nama }}</option>
+                                    <option value="{{ $row->id }}" {{$selectedMapel == $row->id ? 'selected' : ''}}>{{ $row->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -46,7 +48,7 @@ $title = 'Rekap Absensi';
                                 <select class="custom-select" name="kelas" required>
                                     <option value="" selected>-- Pilih Kelas --</option>
                                     @foreach ($kelas as $row)
-                                    <option value="{{ $row->id }}">{{ $row->nama }}</option>
+                                    <option value="{{ $row->id }}" {{$selectedKelas == $row->id ? 'selected' : ''}}>{{ $row->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -70,7 +72,7 @@ $title = 'Rekap Absensi';
                                 </tr>
                               </thead>
                               <tbody>
-                                  @if (is_null($siswa) || $siswa->count() == 0)
+                                  @if (is_null($siswa) || $siswa->count() < 1 || $siswa[0]->absensi->count() < 1)
                                     <tr>
                                         <td colspan="7" class="text-center">
                                             {{ 'Tidak ada data' }}

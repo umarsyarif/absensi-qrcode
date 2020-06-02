@@ -50,7 +50,7 @@ class GuruController extends Controller
         $data->guru_id  = $id;
         $data->kelas_id = $request->kelas_id;
         // $data->jam_masuk = $request->jam_masuk;
-        // $data->jam_keluar = $request->jam_keluar; 
+        // $data->jam_keluar = $request->jam_keluar;
         $data->save();
 
         $siswa = Siswa::where('kelas_id', $data->kelas_id)->pluck('id');
@@ -77,6 +77,7 @@ class GuruController extends Controller
         $user = User::where('identity', $request->id)->first();
         $siswa = Siswa::where('user_id', $user->id)->first();
         if (is_null($siswa)) {
+            $data['status'] = false;
             $data['message'] = "Tidak Ditemukan!";
             return $data;
         }
@@ -95,13 +96,23 @@ class GuruController extends Controller
     {
         $selectedMapel = optional($request)->mapel;
         $selectedKelas = optional($request)->kelas;
-        $kelas = Kelas::all();
-        $mapel = Mapel::all();
+        // get mapel and class with guru_id
+        $guru = Auth::user()->guru;
+        $jadwal = Jadwal::select('kelas_id', 'mapel_id')->where('guru_id', $guru->id)->distinct()->get();
+        $kelas = [];
+        $mapel = [];
+        foreach ($jadwal as $row) {
+            array_push($kelas, $row->kelas_id);
+            array_push($mapel, $row->mapel_id);
+        }
+        $mapel = Mapel::whereIn('id', $mapel)->get();
+        $kelas = Kelas::whereIn('id', $kelas)->get();
+        // get absensi from selected mapel and class
         $siswa = null;
         if (!is_null($selectedKelas) && !is_null($selectedMapel)) {
-            $siswa = Siswa::where('kelas_id', $selectedKelas)->with(['user', 'absensi.jadwal' => function ($query) use ($selectedMapel) {
-                $query->where('mapel_id', $selectedMapel);
-            }])->get();
+            $siswa = Siswa::where('kelas_id', $selectedKelas)->with(['user'])->whereHas('absensi.jadwal', function ($query) use ($selectedMapel) {
+                return $query->where('jadwal.mapel_id', $selectedMapel);
+            })->get();
         }
         return view('guru.rekap-absensi', compact('kelas', 'mapel', 'siswa'));
     }

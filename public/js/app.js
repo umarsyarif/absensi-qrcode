@@ -1993,6 +1993,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         if (response.data.status) {
           toastr.success(response.data.message, "Berhasil");
           _this.result = result;
+        } else {
+          toastr.warning(response.data.message, "Gagal");
         }
       })["catch"](function (error) {
         toastr.warning(error.message, "Gagal");
