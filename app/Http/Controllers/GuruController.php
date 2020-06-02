@@ -10,6 +10,7 @@ use App\Kelas;
 use App\Absensi;
 use App\User;
 use App\Siswa;
+use Carbon\Carbon;
 
 
 class GuruController extends Controller
@@ -34,16 +35,22 @@ class GuruController extends Controller
         $this->validate(
             $request,
             [
-                'mapel_id' => 'required',
-                'kelas_id' => 'required'
+                'mapel_id'  => 'required',
+                'kelas_id'  => 'required',
+                // 'jam_masuk' => 'required',
+                // 'jam_keluar' => 'required'
             ]
         );
         $id = Auth::user()->guru->id;
+
+        // $masuk = Carbon::createFromTime('H:i:s',$request->jam_masuk);
 
         $data = new Jadwal;
         $data->mapel_id = $request->mapel_id;
         $data->guru_id  = $id;
         $data->kelas_id = $request->kelas_id;
+        // $data->jam_masuk = $request->jam_masuk;
+        // $data->jam_keluar = $request->jam_keluar; 
         $data->save();
 
         $siswa = Siswa::where('kelas_id', $data->kelas_id)->pluck('id');

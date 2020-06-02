@@ -9,9 +9,18 @@
             
         <h4 class="login-logo">Login</h4>
         <img src="/images/logo.jpg" height="200px">
-        <form action="../../index3.html" method="post">
+        <form action="{{ route('login') }}" method="post">
+            @csrf
+            @if (session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
             <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Email">
+            <input type="text" placeholder="{{ __('User ID') }}" class="form-control @error('identity') is-invalid @enderror" name="identity" value="{{ old('identity') }}" required autocomplete="identity" autofocus>
+            @error('identity')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
             <div class="input-group-append">
                 <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -19,7 +28,12 @@
             </div>
             </div>
             <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password">
+            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}">
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
             <div class="input-group-append">
                 <div class="input-group-text">
                 <span class="fas fa-lock"></span>

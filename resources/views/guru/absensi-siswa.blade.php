@@ -99,6 +99,16 @@ $title = 'Absensi Siswa';
                 @endforeach
             </select>
         </div>
+
+        {{-- <div class="form-group">
+            <label>Jam Masuk</label>
+            <input type="text" class="form-control" name="jam_masuk" placeholder="Jam Masuk">
+        </div>
+
+        <div class="form-group">
+            <label>Jam Keluar</label>
+            <input type="text" class="form-control" name="jam_masuk" placeholder="Jam Masuk">
+        </div> --}}
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

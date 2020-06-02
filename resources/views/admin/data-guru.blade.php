@@ -32,6 +32,7 @@ $title = 'Data Guru';
                     {{ $message }}
                   </div>
                 @endif --}}
+                
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title"></h3>

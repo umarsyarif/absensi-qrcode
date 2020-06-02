@@ -17,11 +17,7 @@ class CreateAbsensiTable extends Migration
             $table->bigIncrements('id');
             $table->integer('siswa_id');
             $table->integer('jadwal_id');
-<<<<<<< HEAD
-            $table->enum('Status', ['Hadir', 'Tidak Hadir', 'Sakit']);
-=======
             $table->enum('status', ['Hadir', 'Tidak Hadir', 'Sakit']);
->>>>>>> 46b882b19dc8977ae0dfe08960f351ddd844d554
             $table->timestamps();
         });
     }
