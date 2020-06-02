@@ -103,28 +103,29 @@ $title = 'Data Guru';
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" class="form-control" name="name" placeholder="Nama Lengkap">
+                                <input type="text" class="form-control" name="name" placeholder="Nama Lengkap" value="{{ old('name') }}">
                             </div>
                             <div class="form-group">
                                 <label>Jenis Kelamin</label>
-                                <select class="form-control" name="jenis_kelamin">
+                                <select class="form-control" name="jenis_kelamin" value="{{ old('jenis_kelamin') }}">
+                                    <option value="Laki-Laki">-- Jenis Kelamin --</option>
                                     <option value="Laki-Laki">Laki-Laki</option>
                                     <option value="Perempuan">Perempuan</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Alamat</label>
-                                <input type="text" class="form-control" name="alamat" placeholder="Alamat Lengkap">
+                                <input type="text" class="form-control" name="alamat" placeholder="Alamat Lengkap" value="{{ old('alamat') }}">
                             </div>
                             <div class="form-group">
                                 <label>No Hp</label>
-                                <input type="text" class="form-control" name="no_hp" placeholder="No.Hp/Whatsapp">
+                                <input type="text" class="form-control" name="no_hp" placeholder="No.Hp/Whatsapp" value="{{ old('no_hp') }}">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label>NIP</label>
-                                <input type="text" class="form-control" name="identity" placeholder="Nomor Induk Pengajar(10 digit angka)">
+                                <input type="text" class="form-control" name="identity" placeholder="Nomor Induk Pengajar(10 digit angka)" value="{{ old('identity') }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword">Password</label>
@@ -147,10 +148,6 @@ $title = 'Data Guru';
 </div> <!-- /.modal -->
 @endsection
 @push('scripts')
-{{-- <script type="text/javascript">
-
-    
-</script> --}}
 <script type="text/javascript">
 
     $(document).ready(function() {

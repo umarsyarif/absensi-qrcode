@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Jadwal;
 use App\Kelas;
+use App\Mapel;
 
 class AdminController extends Controller
 {
@@ -62,7 +63,7 @@ class AdminController extends Controller
             'no_hp'          => $request->no_hp,
         ]);
 
-        return redirect()->route('data-guru.show')->withSuccess('Data berhasil disimpan!');
+        return redirect()->route('data-guru.show')->with('sukses', 'Data berhasil Di Tambah');
     }
 
     public function editGuru(User $user)
@@ -133,12 +134,39 @@ class AdminController extends Controller
         ]);
 
 
-        return redirect()->route('data-siswa.show')->withSuccess('Data berhasil disimpan!');
+        return redirect()->route('data-siswa.show')->with('sukses', 'Data Berhasil Ditambah');
     }
 
     public function destroySiswa($id)
     {
         //
+    }
+
+    public function showMapel(){
+        $mapel = Mapel::all();
+        return view('admin.data-mapel', compact('mapel'));
+    }
+
+    public function storeMapel(Request $request)
+    {
+        
+        $this->validate($request, [
+            'nama'      => 'required',
+            'singkatan' => 'required'
+        ]);
+
+        $data = new Mapel;
+        $data->nama = $request->nama;
+        $data->singkatan = $request->singkatan;
+        $data->save();
+
+        return redirect()->route('data-mapel.show')->with('sukses', 'Data Mata Pelajaran Berhasil Ditambah');
+    }
+
+    public function destroyMapel(Mapel $mapel)
+    {
+        $mapel->delete($mapel);
+        return redirect()->route('data-mapel.show')->with('sukses', 'Data berhasil dihapus!');
     }
 
     public function showAbsensi()

@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-body login-card-body text-center">
             
-        <h4 class="login-logo">Login</h4>
+        <h4 class="login-logo">Login Presensi</h4>
         <img src="/images/logo.jpg" height="200px">
         <form action="{{ route('login') }}" method="post">
             @csrf

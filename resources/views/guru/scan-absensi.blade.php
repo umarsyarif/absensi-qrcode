@@ -3,6 +3,10 @@ $title = 'Edit Absensi';
 ?>
 @extends('layouts.main')
 
+@section('header')
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-editable.css">
+@stop
+
 @section('title', $title)
 
 @section('header')
@@ -51,7 +55,12 @@ $title = 'Edit Absensi';
                                     <tr>
                                         <td>{{ $loop -> iteration }}</td>
                                         <td>{{ $row -> siswa -> user-> name }}</td>
-                                        <td>{{ $row -> status }}</td>
+                                        <td>
+                                            <a href="#" class="status" data-name="status" data-type="select" 
+                                            data-value="{{$row -> status}}" data-pk="{{ $row -> id }}" 
+                                            data-url="/api/absensi/status/{{$row->id}}" 
+                                            data-title="Pilih Status">{{ $row -> status }}</a>
+                                        </td>
                                         <td>{{ $row -> created_at }}</td>
                                         <td>{{ $row -> updated_at }}</td>
                                     </tr>
@@ -67,9 +76,21 @@ $title = 'Edit Absensi';
 @endsection
 
 @push('scripts')
-    {{-- <script type="text/javascript" src="{{asset('js/filereader.js')}}"></script>
-    <!-- Using jquery version: -->
-    <script type="text/javascript" src="{{asset('js/qrcodelib.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/webcodecamjs.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/main-qr.js')}}"></script> --}}
+<script type="text/javascript">
+
+    $(document).ready(function() {
+    $('.status').editable(
+        {
+            mode: 'popup', 
+            value: $(this).data('value'),
+            source: [
+              {value: 'Hadir', text: 'Hadir'},
+              {value: 'Tidak Hadir', text: 'Tidak Hadir'},
+              {value: 'Sakit', text: 'Sakit'}
+           ]
+
+    });
+
+});
+</script>
 @endpush

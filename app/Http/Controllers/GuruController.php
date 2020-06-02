@@ -91,6 +91,12 @@ class GuruController extends Controller
         return $data;
     }
 
+    public function updateStatus(Request $request, $id)
+    {
+        $absensi = Absensi::findOrFail($id);
+        $absensi->update([$request->name => $request->value]);
+    }
+
     public function showRekap(Request $request)
     {
         $selectedMapel = optional($request)->mapel;
@@ -99,7 +105,8 @@ class GuruController extends Controller
         $mapel = Mapel::all();
         $siswa = null;
         if (!is_null($selectedKelas) && !is_null($selectedMapel)) {
-            $siswa = Siswa::where('kelas_id', $selectedKelas)->with(['user', 'absensi.jadwal' => function ($query) use ($selectedMapel) {
+            $siswa = Siswa::where('kelas_id', $selectedKelas)->with(['user', 'absensi.jadwal' => function ($query) use ($selectedMapel) 
+            {
                 $query->where('mapel_id', $selectedMapel);
             }])->get();
         }
