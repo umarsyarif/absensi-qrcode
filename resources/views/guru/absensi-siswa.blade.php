@@ -54,8 +54,12 @@ $title = 'Absensi Siswa';
                                     <td>{{ $loop -> iteration }}</td>
                                     <td>{{ $row ->mapel-> nama }}</td>
                                     <td>{{ $row -> kelas -> nama }}</td>
+<<<<<<< HEAD
                                     <td>{{ $row -> jam_masuk }}</td>
                                     <td>{{ $row -> jam_keluar }}</td>
+=======
+                                    <td>{{ $row -> created_at -> format('l, j F Y') }}</td>
+>>>>>>> a2560bc4846e5794e7efe9f5a4fdfcd347ea2651
                                     <td>
                                         <a href="#" class="btn btn-danger delete" jadwal_id="{{ $row -> id }}"><i class="fas fa-trash mr-1"></i>Hapus</a>
                                         <a href="{{ route('absensi-siswa.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit mr-1"></i>Edit Absensi</a>

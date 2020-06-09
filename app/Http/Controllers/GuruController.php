@@ -129,12 +129,20 @@ class GuruController extends Controller
         // get absensi from selected mapel and class
         $siswa = null;
         if (!is_null($selectedKelas) && !is_null($selectedMapel)) {
+<<<<<<< HEAD
             $siswa = Siswa::where('kelas_id', $selectedKelas)->with(['user', 'absensi.jadwal' => function ($query) use ($selectedMapel) {
                 $query->where('mapel_id', $selectedMapel);
             }])->get();
             $siswa = Siswa::where('kelas_id', $selectedKelas)->with(['user'])->whereHas('absensi.jadwal', function ($query) use ($selectedMapel) {
                 return $query->where('jadwal.mapel_id', $selectedMapel);
             })->get();
+=======
+            $siswa = Siswa::where('kelas_id', $selectedKelas)->with(['user', 'absensi' => function ($query) use ($selectedMapel, $guru) {
+                $query->whereHas('jadwal', function ($q) use ($selectedMapel, $guru) {
+                    $q->where('mapel_id', $selectedMapel)->where('guru_id', $guru->id);
+                });
+            }])->get();
+>>>>>>> a2560bc4846e5794e7efe9f5a4fdfcd347ea2651
         }
         return view('guru.rekap-absensi', compact('kelas', 'mapel', 'siswa'));
 
