@@ -28,9 +28,7 @@ $selectedKelas = Request::get('kelas');
             </div>
             <!-- Main content -->
         <div class="container">
-
             <div class="container">
-
                 <div class="card">
                     <div class="card-header">
                         <form action="">
@@ -95,7 +93,6 @@ $selectedKelas = Request::get('kelas');
                         </table>
                     </div> <!-- /.card-body -->
                 </div> <!-- /.card -->
-
             </div>
         </div>
     </div>
