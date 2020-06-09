@@ -21,3 +21,7 @@ use App\Http\Controllers\AdminController;
 Route::prefix('profil')->name('profil.')->group(function () {
     Route::post('/guru/{id}', 'AdminController@updateGuru')->name('guru');
 });
+
+Route::prefix('absensi')->name('absensi.')->group(function () {
+    Route::post('/status/{id}', 'GuruController@updateStatus')->name('update');
+});

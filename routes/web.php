@@ -30,6 +30,13 @@ Route::prefix('data-siswa')->name('data-siswa.')->group(function () {
     Route::get('/', 'AdminController@showSiswa')->name('show');
 });
 
+Route::prefix('data-mapel')->name('data-mapel.')->group(function () {
+    Route::post('/', 'AdminController@storemapel')->name('store');
+    Route::get('/', 'AdminController@showMapel')->name('show');
+    Route::get('/{mapel}/hapus-mapel', 'AdminController@destroyMapel')->name('destroy');
+});
+
+
 // GURU ROUTES
 Route::prefix('absensi-siswa')->name('absensi-siswa.')->group(function () {
     Route::post('/', 'GuruController@storeJadwal')->name('store');

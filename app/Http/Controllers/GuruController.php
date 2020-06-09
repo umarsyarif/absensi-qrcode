@@ -92,6 +92,12 @@ class GuruController extends Controller
         return $data;
     }
 
+    public function updateStatus(Request $request, $id)
+    {
+        $absensi = Absensi::findOrFail($id);
+        $absensi->update([$request->name => $request->value]);
+    }
+
     public function showRekap(Request $request)
     {
         $selectedMapel = optional($request)->mapel;
