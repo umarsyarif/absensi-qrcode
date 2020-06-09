@@ -72,7 +72,7 @@ $title = 'Data Mata Pelajaran';
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Tambah Guru</h4>
+                <h4 class="modal-title">Form Tambah Data Mapel</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

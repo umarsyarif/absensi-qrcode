@@ -39,28 +39,30 @@ $title = 'Data Siswa';
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
-                            <tr>
+                            <tr class="text-center">
                                 <th>No</th>
                                 <th>QR Code</th>
-                                <th>NISN</th>
                                 <th>Nama</th>
+                                <th>NISN</th>                               
                                 <th>Jenis Kelamin</th>
                                 <th>Alamat</th>
                                 <th>No Hp</th>
                                 <th>Kelas</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($siswa as $row)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{!! QrCode::size(80)->generate($row -> user -> identity); !!}</td>
-                                <td>{{ $row -> user -> identity }}</td>
+                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{!! QrCode::size(80)->generate($row -> user -> identity); !!}</td>
                                 <td>{{ $row -> user -> name }}</td>
+                                <td class="text-center">{{ $row -> user -> identity }}</td>                                
                                 <td>{{ $row -> jenis_kelamin }}</td>
                                 <td>{{ $row -> alamat }}</td>
-                                <td>{{ $row -> no_hp }}</td>
-                                <td>{{ $row -> kelas -> nama }}</td>
+                                <td class="text-center">{{ $row -> no_hp }}</td>
+                                <td class="text-center">{{ $row -> kelas -> nama }}</td>
+                                <td><a href="#" class="btn btn-danger delete" siswa_id="{{ $row -> id }}"><i class="fas fa-trash mr-1"></i>Hapus</a></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -75,7 +77,7 @@ $title = 'Data Siswa';
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Tambah Siswa</h4>
+                <h4 class="modal-title">Form Tambah Data Siswa</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -127,10 +129,6 @@ $title = 'Data Siswa';
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label>Foto</label>
-                                <input type="file" class="form-control-file border" name="foto">
-                            </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
@@ -172,6 +170,22 @@ $title = 'Data Siswa';
 
 @push('scripts')
 <script type="text/javascript">
+
+    $('.delete').click(function(){
+    var siswa_id = $(this).attr('siswa_id');
+    swal({
+        title: "Apakah Anda Yakin?",
+        text: "Mau Di Hapus Data Ini",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+          window.location = "data-siswa/"+ siswa_id +"/hapus-siswa";  
+        } 
+    });
+});
 
     @if ($errors->any())
         $('#modal-lg').modal('show');

@@ -164,6 +164,9 @@ return [
 
         // qr-code
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
+        // pdf
+        Barryvdh\DomPDF\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -229,7 +232,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         // qr-code
-        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        // pdf
+        'PDF' => Barryvdh\DomPDF\Facade::class
 
     ],
 

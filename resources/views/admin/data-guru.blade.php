@@ -44,7 +44,7 @@ $title = 'Data Guru';
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
-                            <tr>
+                            <tr class="text-center">
                                 <th>No</th>
                                 <th>NIP</th>
                                 <th>Nama</th>
@@ -57,7 +57,7 @@ $title = 'Data Guru';
                         <tbody>
                             @foreach ($guru as $row)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>{{ $row -> user -> identity }}</td>
                                 <td>{{ $row -> user -> name }}</td>
                                 <td>
@@ -81,7 +81,7 @@ $title = 'Data Guru';
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Tambah Guru</h4>
+                <h4 class="modal-title">Form Tambah Data Guru</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -147,6 +147,7 @@ $title = 'Data Guru';
     </div> <!-- /.modal-dialog -->
 </div> <!-- /.modal -->
 @endsection
+
 @push('scripts')
 <script type="text/javascript">
 

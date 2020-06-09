@@ -88,7 +88,6 @@ $title = 'Edit Absensi';
               {value: 'Tidak Hadir', text: 'Tidak Hadir'},
               {value: 'Sakit', text: 'Sakit'}
            ]
-
     });
 
 });
