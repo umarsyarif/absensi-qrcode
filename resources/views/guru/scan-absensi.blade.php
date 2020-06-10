@@ -38,6 +38,7 @@ $title = 'Edit Absensi';
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Data Absensi Siswa</h3>
+                        <a href="javascript:void(0);" id="selesai" class="btn btn-outline-primary float-right">Selesai absen</a>
                     </div> <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
@@ -56,9 +57,9 @@ $title = 'Edit Absensi';
                                         <td>{{ $loop -> iteration }}</td>
                                         <td>{{ $row -> siswa -> user-> name }}</td>
                                         <td>
-                                            <a href="#" class="status" data-name="status" data-type="select" 
-                                            data-value="{{$row -> status}}" data-pk="{{ $row -> id }}" 
-                                            data-url="/api/absensi/status/{{$row->id}}" 
+                                            <a href="#" class="status" data-name="status" data-type="select"
+                                            data-value="{{$row -> status}}" data-pk="{{ $row -> id }}"
+                                            data-url="/api/absensi/status/{{$row->id}}"
                                             data-title="Pilih Status">{{ $row -> status }}</a>
                                         </td>
                                         <td>{{ $row -> created_at }}</td>
@@ -81,7 +82,7 @@ $title = 'Edit Absensi';
     $(document).ready(function() {
     $('.status').editable(
         {
-            mode: 'popup', 
+            mode: 'popup',
             value: $(this).data('value'),
             source: [
               {value: 'Hadir', text: 'Hadir'},
@@ -90,6 +91,42 @@ $title = 'Edit Absensi';
            ]
 
     });
+
+    $(document).ready(function () {
+        $('#selesai').on('click', function () {
+            let siswa = <?= json_encode($absensi) ?>;
+            // console.log(siswa);
+            siswa.forEach(element => {
+                if (element.status == 'Tidak Hadir'){
+                    let nama = element.siswa.user.name;
+                    let text = 'Assalamualaikum Wr.Wb Bapak/Ibu Wali Murid <br>'+
+                            'Kami ingin menyampaikan bahwasan nya murid atas nama '+nama+', tidak hadir pada mata pelajaran '+
+                            'Terima kasih'
+                    let number = element.siswa.no_hp_ayah != '' ? element.siswa.no_hp_ayah : '6281371239875';
+                    let data = {
+                        user: 'gusf_api',
+                        password: 'ZpGSCg0',
+                        SMSText: text,
+                        GSM: number,
+                        output: 'json'
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://api.nusasms.com/api/v3/sendsms/plain',
+                        crossDomain: true,
+                        data: data,
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function (responseData, textStatus, errorThrown) {
+                            alert('POST failed.');
+                        }
+                    });
+                }
+            });
+        })
+    })
 
 });
 </script>
