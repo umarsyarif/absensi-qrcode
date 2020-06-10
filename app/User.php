@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Role');
     }
 
+    public function admin()
+    {
+        return $this->hasOne('App\Admin');
+    }
+
     public function guru()
     {
         return $this->hasOne('App\Guru');

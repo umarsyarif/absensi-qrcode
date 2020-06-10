@@ -20,13 +20,45 @@ class GuruController extends Controller
         return view('guru.dashboard');
     }
 
+    public function updateProfil(Request $request, User $user)
+    {
+        // dd($request->all());
+        $this->validate($request, [
+            'name'              => 'required',
+            'alamat'            => 'required',
+            'no_hp'             => 'required|numeric',
+            'foto'              => 'mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        $data = $user->update([
+            'name'  => $request->name 
+        ]);
+
+        $user->siswa()->update([
+            'alamat'        => $request->alamat,
+            'no_hp'         => $request->no_hp,
+            'no_hp_ayah'    => $request->no_hp_ayah
+        ]);
+
+        if($request->hasFile('foto'))
+        {
+            $request->file('foto')->move('images/', $request->file('foto')->getClientOriginalName());
+            
+            $user->siswa()->update([
+                'foto'  => $request->file('foto')->getClientOriginalName()
+            ]);
+        }
+
+        return redirect()->route('dashboard')->with('sukses', 'Data Profil Berhasil Di Update');
+    }
+
     public function showAbsensi()
     {
         $mapel = Mapel::all();
         $siswa = Kelas::all();
 
         $id = Auth::user()->guru->id;
-        $jadwal = Jadwal::where('guru_id', $id)->get();
+        $jadwal = Jadwal::where('guru_id', $id)->orderBy('id', 'DESC')->get();
         return view('guru.absensi-siswa', compact('jadwal', 'siswa', 'mapel'));
     }
 
@@ -129,20 +161,16 @@ class GuruController extends Controller
         // get absensi from selected mapel and class
         $siswa = null;
         if (!is_null($selectedKelas) && !is_null($selectedMapel)) {
-<<<<<<< HEAD
-            $siswa = Siswa::where('kelas_id', $selectedKelas)->with(['user', 'absensi.jadwal' => function ($query) use ($selectedMapel) {
-                $query->where('mapel_id', $selectedMapel);
-            }])->get();
-            $siswa = Siswa::where('kelas_id', $selectedKelas)->with(['user'])->whereHas('absensi.jadwal', function ($query) use ($selectedMapel) {
-                return $query->where('jadwal.mapel_id', $selectedMapel);
-            })->get();
-=======
             $siswa = Siswa::where('kelas_id', $selectedKelas)->with(['user', 'absensi' => function ($query) use ($selectedMapel, $guru) {
                 $query->whereHas('jadwal', function ($q) use ($selectedMapel, $guru) {
                     $q->where('mapel_id', $selectedMapel)->where('guru_id', $guru->id);
                 });
             }])->get();
->>>>>>> a2560bc4846e5794e7efe9f5a4fdfcd347ea2651
+
+            $siswa = new Carbon($siswa);
+            setlocale(LC_TIME, 'IND');
+
+            // var_dump($tgl);
         }
         return view('guru.rekap-absensi', compact('kelas', 'mapel', 'siswa'));
 

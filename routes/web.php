@@ -13,7 +13,7 @@
 
 Route::get('/', 'Auth\LoginController@showLoginForm')->name('home');
 
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/profil', 'HomeController@index')->name('dashboard');
 
 Auth::routes(['register' => false]);
 
@@ -50,6 +50,10 @@ Route::prefix('absensi')->name('absensi.')->group(function () {
 // =======================================================================================
 
 // GURU ROUTES
+
+Route::patch('/update-profile-guru/{user}', 'GuruController@updateProfil')->name('update-profil.guru');
+
+
 Route::prefix('absensi-siswa')->name('absensi-siswa.')->group(function () {
     Route::post('/', 'GuruController@storeJadwal')->name('store');
     Route::get('/', 'GuruController@showAbsensi')->name('show');
