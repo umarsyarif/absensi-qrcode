@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Jadwal;
 use App\Kelas;
 use App\Mapel;
+use PDF;
 
 class AdminController extends Controller
 {
@@ -24,6 +25,19 @@ class AdminController extends Controller
         $id = Auth::user()->identity;
         $user = User::where('identity', $id)->get();
         return view('dashboard', compact('user'));
+    }
+
+    public function updateProfil(Request $request, User $user)
+    {
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        $data = $user->update([
+            'name'  => $request->name,
+        ]);
+
+        return redirect()->route('dashboard')->with('sukses', 'Data Profil Berhasil Di Update');
     }
 
     public function showGuru()
@@ -73,8 +87,8 @@ class AdminController extends Controller
 
     public function updateGuru(Request $request, $id)
     {
-        $guru = Guru::findOrFail($id);
-        $guru->update([$request->name => $request->value]);
+        // $guru = Guru::findOrFail($id);
+        // $guru->update([$request->name => $request->value]);
     }
 
     public function destroyGuru(Guru $guru)
@@ -112,7 +126,8 @@ class AdminController extends Controller
             'nama_ibu'      => 'required',
             'no_hp_ibu'     => 'required',
             'nama_ayah'     => 'required',
-            'no_hp_ayah'    => 'required'
+            'no_hp_ayah'    => 'required',
+            // 'foto'          => 'mimes:jpg,png'
         ]);
 
         $data = new User;
@@ -133,13 +148,16 @@ class AdminController extends Controller
             'no_hp_ayah'    => $request->no_hp_ayah
         ]);
 
-
         return redirect()->route('data-siswa.show')->with('sukses', 'Data Berhasil Ditambah');
     }
 
-    public function destroySiswa($id)
+    public function destroySiswa(Siswa $siswa)
     {
-        //
+        $user = $siswa->user;
+        $siswa->delete();
+        $user->delete();
+
+        return redirect()->route('data-siswa.show')->with('sukses', 'Data berhasil dihapus!');
     }
 
     public function showMapel(){
@@ -169,24 +187,20 @@ class AdminController extends Controller
         return redirect()->route('data-mapel.show')->with('sukses', 'Data berhasil dihapus!');
     }
 
-    public function showAbsensi()
+    public function showAbsensi(Request $request)
     {
-        // $guru = Guru::findOrFail(Auth::user()->guru->id);
-        // $kelas = $guru->kelas;
+        $selectedMapel = optional($request)->mapel;
+        $selectedKelas = optional($request)->kelas;
+        $kelas = Kelas::all();
+        $mapel = Mapel::all();
+        $siswa = null;
+        if (!is_null($selectedKelas) && !is_null($selectedMapel)) {
+            $siswa = Siswa::where('kelas_id', $selectedKelas)->with(['user', 'absensi.jadwal' => function ($query) use ($selectedMapel) {
+                $query->where('mapel_id', $selectedMapel);
+            }])->get();
+        }
+        return view('admin.absensi', compact('kelas', 'mapel', 'siswa'));
 
-        //$id_kelas = $jadwal->kelas->id;
-        //$siswa = Siswa::where('id_kelas', $id_kelas)->get();
-
-
-        // $jadwal = new Jadwal;
-        // $id = $jadwal->id;
-        // $data ->jadwal->kelas->id;
-        // $siswa = Siswa::where('id_kelas', $data)->get();
-        //  $id -> user->guru->id;
-        $id = Auth::user()->guru->id;
-        $jadwal = Jadwal::where('guru_id', $id)->get();
-        // dd($jadwal);
-        return view('guru.absensi-siswa', compact('jadwal'));
     }
 
     public function storeAbsensi()

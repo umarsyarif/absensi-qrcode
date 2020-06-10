@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <center>
         <a href="{{url('/')}}" class="brand-link mb-3 justify-content-center">
-          <img src="{{asset('images/crystalball.png')}}" alt="AdminLTE Logo" class="img-circle elevation-3 mb-3" width="120px">
+          <img src="{{asset('images/logo smk m.png')}}" alt="AdminLTE Logo" class="img-circle elevation-2 mb-3" width="120px">
                <br>
           <span class="brand-text font-weight-light">Presensi</span>
         </a>

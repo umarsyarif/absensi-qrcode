@@ -20,7 +20,7 @@
 </li>
 
 <li class="nav-item">
-    <a href="#" class="nav-link {{$title == 'Absensi' ? 'active' : ''}}">
+    <a href="{{ route('absensi.show') }}" class="nav-link {{$title == 'Absensi' ? 'active' : ''}}">
     <i class="nav-icon fas fa-chart-line"></i>
     <p>Absensi</p>
     </a>
