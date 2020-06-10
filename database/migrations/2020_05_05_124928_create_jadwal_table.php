@@ -18,8 +18,8 @@ class CreateJadwalTable extends Migration
             $table->integer('mapel_id');
             $table->integer('guru_id');
             $table->integer('kelas_id');
-            $table->dateTime('jam_masuk');
-            $table->dateTime('jam_keluar');
+            $table->time('jam_masuk')->nullable();
+            $table->time('jam_keluar')->nullable();
             $table->timestamps();
         });
     }
