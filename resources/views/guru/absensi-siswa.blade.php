@@ -54,12 +54,7 @@ $title = 'Absensi Siswa';
                                     <td>{{ $loop -> iteration }}</td>
                                     <td>{{ $row ->mapel-> nama }}</td>
                                     <td>{{ $row -> kelas -> nama }}</td>
-<<<<<<< HEAD
-                                    <td>{{ $row -> jam_masuk }}</td>
-                                    <td>{{ $row -> jam_keluar }}</td>
-=======
                                     <td>{{ $row -> created_at -> format('l, j F Y') }}</td>
->>>>>>> a2560bc4846e5794e7efe9f5a4fdfcd347ea2651
                                     <td>
                                         <a href="#" class="btn btn-danger delete" jadwal_id="{{ $row -> id }}"><i class="fas fa-trash mr-1"></i>Hapus</a>
                                         <a href="{{ route('absensi-siswa.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit mr-1"></i>Edit Absensi</a>
@@ -104,8 +99,8 @@ $title = 'Absensi Siswa';
                 <option value="{{ $row -> id }}">{{ $row -> nama }}</option>
                 @endforeach
             </select>
-            @if ($errors->has('mapel_id')) 
-            <span class="help-block">{{ $errors->first('mapel_id') }}></span> 
+            @if ($errors->has('mapel_id'))
+            <span class="help-block">{{ $errors->first('mapel_id') }}></span>
             @endif
         </div>
 
@@ -122,16 +117,16 @@ $title = 'Absensi Siswa';
         <div class="form-group {{$errors->has('mapel_id') ? ' has-error ' : '' }}">
             <label>Jam Masuk</label>
             <input type="text" class="form-control" id="jam_masuk" name="jam_masuk" placeholder="Jam Masuk">
-            @if ($errors->has('jam_masuk')) 
-            <span class="help-block text-danger">{{ $errors->first('jam_masuk') }}</span> 
+            @if ($errors->has('jam_masuk'))
+            <span class="help-block text-danger">{{ $errors->first('jam_masuk') }}</span>
             @endif
         </div>
 
         <div class="form-group">
             <label>Jam Keluar</label>
             <input type="text" class="form-control" id="jam_keluar" name="jam_keluar" placeholder="Jam Masuk">
-            @if ($errors->has('jam_keluar')) 
-            <span class="help-block text-danger">{{ $errors->first('jam_keluar') }}</span> 
+            @if ($errors->has('jam_keluar'))
+            <span class="help-block text-danger">{{ $errors->first('jam_keluar') }}</span>
             @endif
         </div>
         </div>
@@ -156,14 +151,14 @@ $title = 'Absensi Siswa';
     theme: 'blue-grey'
     });
     timepicker.on('change', function(evt) {
-    
+
         var value = (evt.hour || '00') + ':' + (evt.minute || '00');
         evt.element.value = value;
 
         var id = evt.element.id;
         times[id] = value;
         console.clear();
-        console.log(times); 
+        console.log(times);
 
     });
 
@@ -179,8 +174,8 @@ $title = 'Absensi Siswa';
         })
         .then((willDelete) => {
         if (willDelete) {
-          window.location = "absensi-siswa/"+ jadwal_id +"/hapus-jadwal";  
-        } 
+          window.location = "absensi-siswa/"+ jadwal_id +"/hapus-jadwal";
+        }
     });
 });
 
