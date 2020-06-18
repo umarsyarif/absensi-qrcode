@@ -13,7 +13,7 @@
 </li>
 
 <li class="nav-item">
-    <a href="{{route('rekap-absensi.show')}}" class="nav-link {{$title == 'Panduan' ? 'active' : ''}}">
+    <a href="{{route('panduan.show')}}" class="nav-link {{$title == 'Panduan' ? 'active' : ''}}">
         <i class="nav-icon fas fa-info"></i>
         <p>Panduan</p>
     </a>

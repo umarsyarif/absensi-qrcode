@@ -28,8 +28,8 @@ $title = 'Dashboard';
               <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                   <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle"
-                         src="images/user.png"
+                    <img class="profile-user-img img-circle" style="width: 250px; height: 310px"
+                         src="{{ ('/images/'.$user->guru->foto) }}"
                          alt="User profile picture">
                   </div>
                   <hr style="border: 0.5pt dashed gray">
@@ -93,7 +93,7 @@ $title = 'Dashboard';
     </div>
 </div>
 
-<div class="modal fade" id="modal-lg">
+<div class="modal fade" id="modal-md">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
@@ -102,7 +102,7 @@ $title = 'Dashboard';
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('update-profil.guru', $user->id) }}" method="POST">
+                <form action="{{ route('update-profil.guru', $user->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="modal-body">

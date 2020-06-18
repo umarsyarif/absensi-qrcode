@@ -29,13 +29,31 @@ class AdminController extends Controller
 
     public function updateProfil(Request $request, User $user)
     {
+        // dd($request->all());
         $this->validate($request, [
-            'name' => 'required'
+            'name'              => 'required',
+            'alamat'            => 'required',
+            'no_hp'             => 'required|numeric',
+            'foto'              => 'mimes:jpg,jpeg,png|max:2048'
         ]);
 
         $data = $user->update([
-            'name'  => $request->name,
+            'name'  => $request->name 
         ]);
+
+        $user->admin()->update([
+            'alamat'        => $request->alamat,
+            'no_hp'         => $request->no_hp
+        ]);
+
+        if($request->hasFile('foto'))
+        {
+            $request->file('foto')->move('images/', $request->file('foto')->getClientOriginalName());
+            
+            $user->admin()->update([
+                'foto'  => $request->file('foto')->getClientOriginalName()
+            ]);
+        }
 
         return redirect()->route('dashboard')->with('sukses', 'Data Profil Berhasil Di Update');
     }
@@ -193,11 +211,30 @@ class AdminController extends Controller
         $selectedKelas = optional($request)->kelas;
         $kelas = Kelas::all();
         $mapel = Mapel::all();
+        // get mapel and class with guru_id
+        $guru = Auth::user()->guru;
+        $jadwal = Jadwal::select('kelas_id', 'mapel_id')->distinct()->get();
+        $kelas = [];
+        $mapel = [];
+        foreach ($jadwal as $row) {
+            array_push($kelas, $row->kelas_id);
+            array_push($mapel, $row->mapel_id);
+        }
+        $mapel = Mapel::whereIn('id', $mapel)->get();
+        $kelas = Kelas::whereIn('id', $kelas)->get();
+        // get absensi from selected mapel and class
         $siswa = null;
         if (!is_null($selectedKelas) && !is_null($selectedMapel)) {
-            $siswa = Siswa::where('kelas_id', $selectedKelas)->with(['user', 'absensi.jadwal' => function ($query) use ($selectedMapel) {
-                $query->where('mapel_id', $selectedMapel);
+            $siswa = Siswa::where('kelas_id', $selectedKelas)->with(['user', 'absensi' => function ($query) use ($selectedMapel, $guru) {
+                $query->whereHas('jadwal', function ($q) use ($selectedMapel, $guru) {
+                    $q->where('mapel_id', $selectedMapel);
+                });
             }])->get();
+
+            // $siswa = new Carbon($siswa);
+            // setlocale(LC_TIME, 'IND');
+
+            // var_dump($tgl);
         }
         return view('admin.absensi', compact('kelas', 'mapel', 'siswa'));
 

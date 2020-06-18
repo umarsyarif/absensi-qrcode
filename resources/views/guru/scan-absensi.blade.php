@@ -94,21 +94,29 @@ $title = 'Edit Absensi';
     $(document).ready(function () {
         $('#selesai').on('click', function () {
             let siswa = <?= json_encode($absensi) ?>;
-            // console.log(siswa);
+            console.log(siswa);
             siswa.forEach(element => {
                 if (element.status == 'Tidak Hadir'){
                     let nama = element.siswa.user.name;
-                    let text = 'Assalamualaikum Wr.Wb Bapak/Ibu Wali Murid <br>'+
-                            'Kami ingin menyampaikan bahwasan nya murid atas nama '+nama+', tidak hadir pada mata pelajaran '+
-                            'Terima kasih'
-                    let number = element.siswa.no_hp_ayah != '' ? element.siswa.no_hp_ayah : '6281371239875';
+                    let mapel = element.jadwal.mapel.nama;
+                    let text = 'Assalamualaikum Wr.Wb Bapak/Ibu Wali Murid.'+
+                            'Kami ingin menyampaikan bahwasan nya murid atas nama '+nama+', tidak hadir pada mata pelajaran '+mapel+
+                            'Terima kasih';
+                    let number = null;
+                    number = element.siswa.no_hp_ayah ? element.siswa.no_hp_ayah : element.siswa.no_hp_ibu;
+                    if (!number){
+                        toastr.warning(error.message, "Gagal Mengirimkan SMS");
+                        return;
+                    }                  
+                    // let number = element.siswa.no_hp_ayah ?? element.siswa.no_hp_ayah : '6281371239875';
                     let data = {
-                        user: 'gusf_api',
-                        password: 'ZpGSCg0',
+                        user: 'ichsan_api',
+                        password: '7mcvysE',
                         SMSText: text,
                         GSM: number,
                         output: 'json'
                     }
+                    console.log('sad');
                     $.ajax({
                         type: 'POST',
                         url: 'http://api.nusasms.com/api/v3/sendsms/plain',
@@ -116,7 +124,22 @@ $title = 'Edit Absensi';
                         data: data,
                         dataType: 'json',
                         success: function(response) {
-                            console.log(response);
+                             console.log(response.results[0].status);
+                            try {
+                                if (response.results[0].status == 0) {
+                                    toastr.success(response.message, "Berhasil MEngirimkan SMS");
+                                    
+                                } else if(response.results[0].status==-13){
+                                    toastr.warning(response.message, "Nomor Tujuan Tidak Valid");
+                                }else if(response.results[0].status==-2){
+                                    toastr.warning(response.message, "Pulsa Tidak Mencukupi");
+                                }else{
+                                    toastr.error(response.message, "Ada Kesalahan");
+                                }
+                            } catch (error) {
+                                toastr.error(error.message, "Gagal Mengirimkan SMS");
+                            }
+                            
                         },
                         error: function (responseData, textStatus, errorThrown) {
                             alert('POST failed.');

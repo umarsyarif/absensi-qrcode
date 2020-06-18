@@ -34,17 +34,16 @@ class GuruController extends Controller
             'name'  => $request->name 
         ]);
 
-        $user->siswa()->update([
+        $user->guru()->update([
             'alamat'        => $request->alamat,
-            'no_hp'         => $request->no_hp,
-            'no_hp_ayah'    => $request->no_hp_ayah
+            'no_hp'         => $request->no_hp
         ]);
 
         if($request->hasFile('foto'))
         {
             $request->file('foto')->move('images/', $request->file('foto')->getClientOriginalName());
             
-            $user->siswa()->update([
+            $user->guru()->update([
                 'foto'  => $request->file('foto')->getClientOriginalName()
             ]);
         }
@@ -111,7 +110,7 @@ class GuruController extends Controller
 
     public function editAbsensi(Jadwal $jadwal)
     {
-        $absensi = Absensi::where('jadwal_id', $jadwal->id)->get();
+        $absensi = Absensi::with('jadwal.mapel')->where('jadwal_id', $jadwal->id)->get();
         return view('guru.scan-absensi', compact('absensi', 'jadwal'));
     }
 
@@ -167,8 +166,8 @@ class GuruController extends Controller
                 });
             }])->get();
 
-            $siswa = new Carbon($siswa);
-            setlocale(LC_TIME, 'IND');
+            // $siswa = new Carbon($siswa);
+            // setlocale(LC_TIME, 'IND');
 
             // var_dump($tgl);
         }
@@ -176,31 +175,11 @@ class GuruController extends Controller
 
     }
 
-    public function showLaporan(Request $request)
+    public function showPanduan()
     {
-        $selectedMapel = optional($request)->mapel;
-        $selectedKelas = optional($request)->kelas;
-        // get mapel and class with guru_id
-        $guru = Auth::user()->guru;
-        $jadwal = Jadwal::select('kelas_id', 'mapel_id')->where('guru_id', $guru->id)->distinct()->get();
-        $kelas = [];
-        $mapel = [];
-        foreach ($jadwal as $row) {
-            array_push($kelas, $row->kelas_id);
-            array_push($mapel, $row->mapel_id);
-        }
-        $mapel = Mapel::whereIn('id', $mapel)->get();
-        $kelas = Kelas::whereIn('id', $kelas)->get();
-        // get absensi from selected mapel and class
-        $siswa = null;
-        if (!is_null($selectedKelas) && !is_null($selectedMapel)) {
-            $siswa = Siswa::where('kelas_id', $selectedKelas)->with(['user'])->whereHas('absensi.jadwal', function ($query) use ($selectedMapel) {
-                return $query->where('jadwal.mapel_id', $selectedMapel);
-            })->get();
-        }
-        $pdf = \PDF::loadview('guru.laporan-absensi', compact('siswa'));
-        return $pdf->stream();
+        return view('guru.panduan');
     }
+
 
 
 }

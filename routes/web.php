@@ -53,7 +53,6 @@ Route::prefix('absensi')->name('absensi.')->group(function () {
 
 Route::patch('/update-profile-guru/{user}', 'GuruController@updateProfil')->name('update-profil.guru');
 
-
 Route::prefix('absensi-siswa')->name('absensi-siswa.')->group(function () {
     Route::post('/', 'GuruController@storeJadwal')->name('store');
     Route::get('/', 'GuruController@showAbsensi')->name('show');
@@ -66,6 +65,11 @@ Route::prefix('rekap-absensi')->name('rekap-absensi.')->group(function () {
     Route::post('/', 'GuruController@searchRekap')->name('store');
     Route::get('/', 'GuruController@showRekap')->name('show');
     Route::get('/pdf', 'GuruController@showLaporan')->name('pdf');
+    // Route::post('/{jadwal}', 'GuruController@updateAbsensi')->name('update');
+});
+
+Route::prefix('panduan')->name('panduan.')->group(function () {
+    Route::get('/', 'GuruController@showPanduan')->name('show');
     // Route::post('/{jadwal}', 'GuruController@updateAbsensi')->name('update');
 });
 // =======================================================================================
