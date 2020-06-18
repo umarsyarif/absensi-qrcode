@@ -14,14 +14,14 @@
 
 <li class="nav-item">
     <a href="{{route('data-mapel.show')}}" class="nav-link {{$title == 'Data Mata Pelajaran' ? 'active' : ''}}">
-    <i class="nav-icon fas fa-chart-line"></i>
+    <i class="nav-icon fas fa-book-open"></i>
     <p>Data Mata Pelajaran</p>
     </a>
 </li>
 
 <li class="nav-item">
     <a href="{{ route('absensi.show') }}" class="nav-link {{$title == 'Absensi' ? 'active' : ''}}">
-    <i class="nav-icon fas fa-chart-line"></i>
+    <i class="nav-icon fas fa-book"></i>
     <p>Absensi</p>
     </a>
 </li>
